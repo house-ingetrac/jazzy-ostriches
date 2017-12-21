@@ -1,4 +1,4 @@
-J.A.S.P.R.
+Jazzy Ostriches
 Alessandro Cartegni, Joyce Wu, Dasha Shifrina, Brian Leung
 SoftDev1 Pd 7
 
