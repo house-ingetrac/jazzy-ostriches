@@ -17,6 +17,9 @@ SoftDev1 Pd 7
 
 cartegniA -- 2017-12-21 12:49
 devlog.txt
+
 leungB -- 2017-12-22 01:27
 added log.sh and the design doc
 
+cartegniA -- 2017-12-22 13:15
+fdbk: Clarify/simplify component map, refine database schema (more detail), more detail in sitemap
