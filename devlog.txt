@@ -23,6 +23,7 @@ added log.sh and the design doc
 
 cartegniA -- 2017-12-22 13:15
 fdbk: Clarify/simplify component map, refine database schema (more detail), more detail in sitemap
+
 joyceW -- 2018-01-02 16:38:44
 created basic bootstrap and added login/signup html pages
 
