@@ -32,3 +32,9 @@ added updated design doc
 
 shifrinaD -- 2018-01-03 13:17
 added updated design doc
+
+leungB -- 2018-01-03 13:19
+created account db
+
+wuJ -- 2018-01-03 13:19
+started on map api integration
