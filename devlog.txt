@@ -26,3 +26,6 @@ fdbk: Clarify/simplify component map, refine database schema (more detail), more
 joyceW -- 2018-01-02 16:38:44
 created basic bootstrap and added login/signup html pages
 
+leungB -- 2018-01-03 12:49
+added updated design doc
+
