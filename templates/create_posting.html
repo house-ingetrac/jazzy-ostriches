@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/create" method="POST">
+  Item: <input type="text" name="item" required><br>
+  Location Found: <input type="text" name="location" required><br>
+  Date Found: <input type="text" name="date" required<br>
+  Description: <input type="text" name="description"><br>
+  <input type="submit" value="Post" name="created">
+</form>
+{% endblock content %}

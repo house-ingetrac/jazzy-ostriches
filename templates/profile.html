@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Welcome, {{user}}!</h1><br>
+<h3><center>Your Lost Items:</center></h3><br>
+  {% for item in lostitems %}
+  <b>{{item[0]}}</b><br> <!--item type-->
+  Location: {{item[1]}} <br> <!--item location-->
+  Date Found: {{item[2]}} <br>
+  Description:
+    {% if item[3] == "" %}
+      N/A
+    {% endif %}
+      {{item[3]}} <!--checks if there is item description-->
+  <br>
+  <form action="/contact" method="POST">
+    <input type="submit" value="Contact" name="contact">
+  </form>   
+  <hr>
+<h3><center>Your Found Items:</center></h3><br>
+{% endblock content %}
