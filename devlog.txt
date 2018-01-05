@@ -44,3 +44,6 @@ more front-end developement and map integration, waiting on database
 leungB -- 2018-01-05 11:32
 Testing mailsend
 
+leungB -- 2018-01-05 13:02
+had import problems and badly formatted data, but the emails can send now!
+
