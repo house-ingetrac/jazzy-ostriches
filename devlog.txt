@@ -47,3 +47,6 @@ Testing mailsend
 leungB -- 2018-01-05 13:02
 had import problems and badly formatted data, but the emails can send now!
 
+wuJ -- 2018-01-05 23:19
+added basic flask account system and added more to html
+

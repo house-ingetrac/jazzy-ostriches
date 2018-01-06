@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-  {% block head %}
   <head>
+  {% block head %}
     <title> {% block title %} {{title}} {% endblock title %} </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../static/bootstrap.min.css" rel="stylesheet">
     <link href="../static/modern-business.css" rel="stylesheet">
-  </head>
-  {% endblock head %}
+  {% endblock %}
+</head>
 
 <!--Navigation Bar-->
   {% block navbar %}
@@ -45,12 +45,12 @@
         </div>
       </div>
     </nav>
-    {% endblock navbar %}
+    {% endblock %}
 
   {% block body %}
   <body>
     {% block content %}
-    {% endblock content %}
+    {% endblock %}
   </body>
-  {% endblock body %}
+  {% endblock %}
 </html>
