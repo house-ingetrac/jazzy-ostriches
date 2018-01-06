@@ -38,7 +38,8 @@ created account db
 
 wuJ -- 2018-01-03 13:19
 started on map api integration
-joyceW -- 2018-01-04 20:06
+
+wuJ -- 2018-01-04 20:06
 more front-end developement and map integration, waiting on database
 
 leungB -- 2018-01-05 11:32
@@ -46,4 +47,7 @@ Testing mailsend
 
 leungB -- 2018-01-05 13:02
 had import problems and badly formatted data, but the emails can send now!
+
+wuJ -- 2018-01-05 23:19
+added basic flask account system and added more to html
 
