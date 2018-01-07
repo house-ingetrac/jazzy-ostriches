@@ -1,5 +1,64 @@
 {% extends "base.html" %}
 
+<!--adds map-->
+{% block head %}
+<script src="https://maps.googleapis.com/maps/api/js?key={{api_key}}"></script>
+<script>
+  var listings = {{posts}}; //list in format [[[lat, long], item, post id]]
+  //finds number of Markers
+  var all_locations = [];
+  for each (listing in listings){
+    all_locations.push(list[0])
+  };
+  var markers = all_locations.filter(onlyUnique); //filter to find all unique all_locations
+
+  //initializes map
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: new google.maps.LatLng(40.76, -73.99), //center for times square
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  //adds postings to each marker on click
+  var infowindow = new google.maps.InfoWindow();
+  function add_postings(marker, i, items_list) {
+    var contentString = "";
+    //adds first 5 posts
+    for(i = 0; i < 5; i++){
+      try{
+        contentString += "<form action='/posting'><input type='hidden' name='item_id' value='"+items_list[2]+"'><input type='submit' value='"+items_list[1] + "'></form>";
+      };
+      catch(e){
+        break;
+      };
+    };
+    //adds See More button
+    contentString += "<br>" + "<form action='/listings'><input type='submit' value='See More'><input type='hidden' name='location' value='"+items_list[0]+"'></form>";
+    infowindow.setContent(contentString);
+    infowindow.open(map, marker);
+  };
+
+  //add markers to map
+  for(loc = 0; loc < markers.length; loc++){
+    //creates new array of items at location
+    var items = [];
+    for each (listing in listings){
+      if (markers[loc] == listing[0]){
+        items.push(listing)
+      };
+    };
+
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(markers[loc][0], markers[loc][1]),
+      label: items.length.toString(),
+      map: map
+    });
+
+    google.maps.event.addListener(marker, 'click', add_postings(marker, i, items));
+  };
+</script>
+{% endblock %}
+
 {% block content %}
 <img src="#"> <!--need to add image"-->
 <div class="container">
