@@ -1,4 +1,4 @@
-# jazzy-ostriches - Lost in New York 
+# jazzy-ostriches - :mag_right: Lost in New York :mag:
 
 #### Made by Alessandro Cartegni, Brian Leung, Dasha Shifrina, and Joyce Wu - SoftDev Pd. 7
 

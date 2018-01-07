@@ -57,3 +57,6 @@ added acount system, worked on connecting html files in app.py
 wuJ -- 2018-01-07 15:50
 added map to home.html using javascript, needs testing
 
+leungB -- 2018-01-07 17:39
+Updated README with more info and added magnifying glass emojis
+
