@@ -67,3 +67,6 @@ Created keys.txt file.
 shifrinaD -- 2018-01-08 03:23
 Created lost post files and route for users to report lost items.
 
+shifrinaD -- 2018-01-08 03:30
+Updated design doc component map for mailjet API.
+
