@@ -60,3 +60,10 @@ added map to home.html using javascript, needs testing
 leungB -- 2018-01-07 17:39
 Updated README with more info and added magnifying glass emojis
 
+
+shifrinaD -- 2018-01-08 03:30
+Created keys.txt file.
+
+shifrinaD -- 2018-01-08 04:04
+Created lost post files and route for users to report lost items.
+
