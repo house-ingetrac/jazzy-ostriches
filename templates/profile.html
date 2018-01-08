@@ -12,10 +12,11 @@
       N/A
     {% endif %}
       {{item[3]}} <!--checks if there is item description-->
+  {% endfor %}
   <br>
   <form action="/contact" method="POST">
     <input type="submit" value="Contact" name="contact">
-  </form>   
+  </form>
   <hr>
 <h3><center>Your Found Items:</center></h3><br>
-{% endblock content %}
+{% endblock %}
