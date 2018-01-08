@@ -15,7 +15,7 @@ app.secret_key = os.urandom(32)
 #opens api key text file and retrieves keys
 f = open("keys.txt", "r")
 apis = f.read().split("\n")
-map_api_key = apis[0] 
+map_api_key = apis[0]
 
 #homepage
 @app.route("/")
@@ -24,7 +24,7 @@ def start():
         #must add more once home.html has more details
         return render_template('home.html', title="Welcome", loggedIn=True)
     #must add introductory page to explain what everything is
-    return render_template('home.html', title="Welcome", loggedIn=False)
+    return render_template('profile.html') #, title="Welcome", loggedIn=False)
 
 # Login Authentication
 @app.route('/login', methods=['GET', 'POST'])
@@ -60,7 +60,7 @@ def profile():
         flash("Yikes! You need to log in first.")
         return redirect(url_for('authentication'))
     else:
-        return redirect(url_for('start'))
+        return render_template("profile.html", loggedIn = True)
 
 # Logging out
 @app.route('/logout', methods=['GET', 'POST'])
