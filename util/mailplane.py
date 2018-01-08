@@ -8,14 +8,14 @@ def getKey(keytype):
 		N = 5
 	else:
 		N = 3
-	with open('../keys.csv', 'rb') as passport:
+	with open('../keys.txt', 'rb') as passport:
 		reader = csv.reader(passport)
 		for i, row in enumerate(reader):
 			if i == N:
 				return row[0]
 	return "ERROR: missing file?"
 
-def popData(from_user,subject,)
+#def popData(from_user,subject,)
 
 
 API_SECRET = getKey(0)
