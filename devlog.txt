@@ -73,3 +73,6 @@ Updated design doc component map for mailjet API.
 leungB -- 2018-01-08 13:20
 Migrating the mail system to the Mailjet V3 python wrapper. Far better customization.
 
+wuJ -- 2018-01-08 20:56
+had a lot of problems with formatting map onto homepage, but working now. Waiting on items.db to fully implement markers on maps
+
