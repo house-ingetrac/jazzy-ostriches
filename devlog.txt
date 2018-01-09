@@ -60,7 +60,6 @@ added map to home.html using javascript, needs testing
 leungB -- 2018-01-07 17:39
 Updated README with more info and added magnifying glass emojis
 
-
 shifrinaD -- 2018-01-08 03:00
 Created keys.txt file.
 
@@ -70,9 +69,11 @@ Created lost post files and route for users to report lost items.
 shifrinaD -- 2018-01-08 03:30
 Updated design doc component map for mailjet API.
 
+cartegniA -- 2018-01-08 13:15
+added key info to readme
+
 leungB -- 2018-01-08 13:20
 Migrating the mail system to the Mailjet V3 python wrapper. Far better customization.
 
 wuJ -- 2018-01-08 20:56
 had a lot of problems with formatting map onto homepage, but working now. Waiting on items.db to fully implement markers on maps
-
