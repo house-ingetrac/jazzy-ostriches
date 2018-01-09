@@ -40,3 +40,15 @@ def addUser(user, password):
     c.execute("INSERT INTO users VALUES(?, ?)", vals)
     db.commit()
     db.close()
+
+# -----FUNCTIONS FOR ITEM SYSTEM-----
+
+#print all lost items from user
+def lost_items(user):
+    db = sqlite3.connect("data/items.db")
+    c = db.cursor()
+    a = 'SELECT username, itemSubs FROM items' #fix this
+    x = c.execute(a)
+    lost_items = {}
+
+ 

@@ -11,5 +11,7 @@ def sendmail(losterID,finderID,lostItemID):
 	
 	response = requests.post('https://api.mailjet.com/v3.1/send', headers=headers, data=data, auth=('PUBKEY', 'PRIVKEY'))
 	print response
+	
+def formatMail(lostItemID,)
 
 sendmail(...)

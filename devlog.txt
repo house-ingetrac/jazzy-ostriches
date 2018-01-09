@@ -70,3 +70,6 @@ Created lost post files and route for users to report lost items.
 shifrinaD -- 2018-01-08 03:30
 Updated design doc component map for mailjet API.
 
+leungB -- 2018-01-08 13:20
+Migrating the mail system to the Mailjet V3 python wrapper. Far better customization.
+

@@ -60,6 +60,7 @@ def profile():
         flash("Yikes! You need to log in first.")
         return redirect(url_for('authentication'))
     else:
+        username = session.get('username')
         return render_template("profile.html", loggedIn = True)
 
 # Logging out
