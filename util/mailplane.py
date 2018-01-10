@@ -13,7 +13,8 @@ def getKey(keytype):
 		for i, row in enumerate(reader):
 			if i == N:
 				return row[0]
-	return "ERROR: missing file?"
+	print "ERROR: missing file?"
+	return 0
 
 #def popData(from_user,subject,)
 
@@ -30,7 +31,7 @@ data = {
     'FromEmail': 'bleung@stuy.edu',
     'FromName': 'Lost In New York',
     'Subject': 'Something Has Been Found! - Lost In New York',
-    'Text-part': 'Your lost Iem has been found',
+    'Text-part': 'Your lost Item has been found',
     'Html-part': '<h3>Dear passenger, welcome to Mailjet!</h3><br />May the delivery force be with you!',
     'Recipients': [{'Email':'brianleung329@gmail.com'}]
 }
