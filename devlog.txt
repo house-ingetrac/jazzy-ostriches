@@ -77,3 +77,6 @@ Migrating the mail system to the Mailjet V3 python wrapper. Far better customiza
 
 wuJ -- 2018-01-08 20:56
 had a lot of problems with formatting map onto homepage, but working now. Waiting on items.db to fully implement markers on maps
+
+cartegniA -- 2018-01-10 12:58
+added email section to signup form
