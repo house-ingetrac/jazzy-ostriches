@@ -32,7 +32,7 @@ def authentication():
     # if user already logged in, redirect to homepage(base.html)
     if session.get('username'):
         flash("Yikes! You're already signed in.")
-        return redirect('start') #redirects to ????
+        return redirect(url_for('start'))
     # user entered login form
     elif request.form.get('login'):
         print "login"
@@ -73,15 +73,15 @@ def logout():
         session.pop('username')
         return redirect(url_for('start')) #returns back to main page once logged out
 
-@app.route('/home', methods=['GET', 'POST'])
-def load_map():
+@app.route('/lost', methods=['GET', 'POST'])
+def lost_item():
     if not session.get('username'):
-        flash("Yikes! You need to log in first.")
+        flash("Yikes! You're not logged in.")
         return redirect(url_for('authentication'))
     else:
-        return render_template("home.html") #go back and add variables
+        return render_template("create_lost_post.html", loggedIn = True)
 
-@app.route('/post', methods=['GET', 'POST'])
+@app.route('/found', methods=['GET', 'POST'])
 def post():
     if not session.get('username'):
         flash("Yikes! You need to log in first.")
@@ -89,9 +89,30 @@ def post():
     else:
         return render_template('create_posting.html') #go back and add more variables
 
-@app.route('/listings', methods=['GET', 'POST'])
-def list_posts():
-    return
+@app.route('/find_item', mehods=['GET', 'POST'])
+def find():
+    found = True #filler boolean for now, method that helps find item
+    if found:
+        return render_template("single_posting.html") #use ajax instead, if not found, give option to add posting
+    else:
+        flash("Sorry, we could not find a match. We will add your lost item to the listing.")
+        return redirect(url_for('list_lost_items'))
+
+@app.route('/lost_postings', methods=['GET', 'POST'])
+def list_lost_items():
+    #you are still allowed to see postings without logging in
+    if not session.get('username'):
+        return render_template("lost_postings.html", loggedIn=False)
+    else:
+        return render_template("lost_postings.html", loggedIn=True)
+
+@app.route('/found_postings', methods=['GET', 'POST'])
+def list_found_items():
+    #still allowed to see postings without logging in
+    if not session.get('username'):
+        return render_template("found_postings.html", loggedIn=False)
+    else:
+        return render_template("found_postings.html", loggedIn=True)
 
 if __name__ == "__main__":
     app.debug = True

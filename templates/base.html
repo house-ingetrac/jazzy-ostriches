@@ -35,8 +35,14 @@
               <a class="nav-link" href="/signup">Sign Up</a>
             </li>
             {% endif %}
-            <li class="nav-item">
-              <a class="nav-link" href="/listings">Listings</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Listings
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                <a class="dropdown-item" href="/lost_postings">Lost</a>
+                <a class="dropdown-item" href="/found_postings">Found</a>
+              </div>
             </li>
           </ul>
         </div>

@@ -3,20 +3,37 @@
 {% block content %}
 <h1>Welcome, {{user}}!</h1><br>
 <h3><center>Your Lost Items:</center></h3><br>
-  {% for item in lostitems %}
-  <b>{{item[0]}}</b><br> <!--item type-->
-  Location: {{item[1]}} <br> <!--item location-->
-  Date Found: {{item[2]}} <br>
-  Description:
-    {% if item[3] == "" %}
-      N/A
-    {% endif %}
-      {{item[3]}} <!--checks if there is item description-->
+  {% for item in lost_items %}
+    <b>{{item[0]}}</b> <!--item-->
+    Category: {{item[1]}}<br>
+    Date: {{item[2]}}<br>
+    Location:
+      <!-- location could be optional-->
+      {% if {{item[3]}} == "" %} N/A<br>
+      {% else %} {{item[3]}}<br>
+      {% endif %}
+    Description:
+      <!-- desciption is optional-->
+      {% if {{item[4]}} == "" %} N/A<br>
+      {% else %} {{item[4]}}<br>
+      {% endif %}
+    <hr>
   {% endfor %}
-  <br>
-  <form action="/contact" method="POST">
-    <input type="submit" value="Contact" name="contact">
-  </form>
-  <hr>
 <h3><center>Your Found Items:</center></h3><br>
+  {% for item in lost_items %}
+    <b>{{item[0]}}</b> <!--item-->
+    Category: {{item[1]}}<br>
+    Date: {{item[2]}}<br>
+    Location:
+      <!-- location could be optional-->
+      {% if {{item[3]}} == "" %} N/A<br>
+      {% else %} {{item[3]}}<br>
+      {% endif %}
+    Description:
+      <!-- desciption is optional-->
+      {% if {{item[4]}} == "" %} N/A<br>
+      {% else %} {{item[4]}}<br>
+      {% endif %}
+    <hr>
+  {% endfor %}
 {% endblock %}

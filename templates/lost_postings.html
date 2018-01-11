@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Lost Items</h1><br><br>
+{% for item in lost_items %}
+  <b>{{item[0]}}</b> <!--item-->
+  Category: {{item[1]}}<br>
+  Date: {{item[2]}}<br>
+  Location:
+    <!-- location could be optional-->
+    {% if {{item[3]}} == "" %} N/A<br>
+    {% else %} {{item[3]}}<br>
+    {% endif %}
+  Description:
+    <!-- desciption is optional-->
+    {% if {{item[4]}} == "" %} N/A<br>
+    {% else %} {{item[4]}}<br>
+    {% endif %}
+  <hr>
+{% endfor %}
+
+{% endblock %}
