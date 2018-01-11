@@ -1,5 +1,5 @@
 from mailjet_rest import Client
-import csv
+import csv, sqlite3
 
 # Gets API keys for Mailjet
 # 0 gets private, anything else gets public.
@@ -14,29 +14,34 @@ def getKey(keytype):
 			if i == N:
 				return row[0]
 	print "ERROR: missing file?"
-	return 0
+	return 1
 
-#def popData(from_user,subject,)
+def sendMail(ownData, userData);
+	API_SECRET = getKey(0)
+	API_KEY = getKey(1)
+
+	print(API_KEY)
+	print(API_SECRET)
+
+	mailjet = Client(auth=(API_KEY, API_SECRET), version='v3')
+
+	data = {
+	    'FromEmail': 'bleung@stuy.edu',
+	    'FromName': 'Lost In New York',
+	    'Subject': 'Something Has Been Found! - Lost In New York',
+	    'Text-part': 'Your lost Item has been found',
+	    'Html-part': '<h3>Dear passenger, welcome to Mailjet!</h3><br />May the delivery force be with you!',
+	    'Recipients': [{'Email':'brianleung329@gmail.com'}]
+	}
+
+	result = mailjet.send.create(data=data)
+	print result.status_code
+	print result.json()
 
 
-API_SECRET = getKey(0)
-API_KEY = getKey(1)
+def getUserData(userID):
+	return "ok"
 
-print(API_KEY)
-print(API_SECRET)
 
-mailjet = Client(auth=(API_KEY, API_SECRET), version='v3')
 
-data = {
-    'FromEmail': 'bleung@stuy.edu',
-    'FromName': 'Lost In New York',
-    'Subject': 'Something Has Been Found! - Lost In New York',
-    'Text-part': 'Your lost Item has been found',
-    'Html-part': '<h3>Dear passenger, welcome to Mailjet!</h3><br />May the delivery force be with you!',
-    'Recipients': [{'Email':'brianleung329@gmail.com'}]
-}
-
-result = mailjet.send.create(data=data)
-print result.status_code
-print result.json()
 
