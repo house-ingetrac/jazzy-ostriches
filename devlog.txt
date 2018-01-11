@@ -80,8 +80,12 @@ had a lot of problems with formatting map onto homepage, but working now. Waitin
 
 cartegniA -- 2018-01-10 12:58
 added email section to signup form
+
 leungB -- 2018-01-10 13:18
 Updated design doc even more to reflect schema of database.
+
+wuJ -- 2018-01-10 13:19
+Fixed database schemas on python files.
 
 wuJ -- 2018-01-10 21:40
 fixed html pages, reworked flask redirects, and account system now working. TIP: double brackets aren't needed to refer to a variable in a statement for jinja2
