@@ -89,7 +89,7 @@ def post():
     else:
         return render_template('create_posting.html') #go back and add more variables
 
-@app.route('/find_item', mehods=['GET', 'POST'])
+@app.route('/find_item', methods=['GET', 'POST'])
 def find():
     found = True #filler boolean for now, method that helps find item
     if found:
