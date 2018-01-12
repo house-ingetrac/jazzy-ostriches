@@ -90,3 +90,6 @@ Fixed database schemas on python files.
 wuJ -- 2018-01-10 21:40
 fixed html pages, reworked flask redirects, and account system now working. TIP: double brackets aren't needed to refer to a variable in a statement for jinja2
 
+wuJ -- 2018-01-11 20:17
+added some changes to html pages, can't figure out why dropdown doesnt work in navbar
+
