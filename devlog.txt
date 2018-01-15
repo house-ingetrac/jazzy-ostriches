@@ -93,3 +93,6 @@ fixed html pages, reworked flask redirects, and account system now working. TIP:
 wuJ -- 2018-01-11 20:17
 added some changes to html pages, can't figure out why dropdown doesnt work in navbar
 
+wuJ -- 2018-01-14 22:44
+problems with css navbar, will change bootstrap around to make work
+
