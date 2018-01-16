@@ -5,7 +5,6 @@ html {
 /*moves everything down so it doesn't overlap navbar*/
 body {
   padding-top: 50px;
-  overflow: hidden;
 }
 
 a {
@@ -37,6 +36,10 @@ a {
   font-size: 18px;
 }
 
+#overflow {
+  overflow: hidden;
+}
+
 #map {
   width:100vw;
   height:100vh;
@@ -44,7 +47,7 @@ a {
 
 #sidemap {
   width: 50vw;
-  height: 95vh;
+  height: 90vh;
   float: right;
   background-color: black;
 }
@@ -55,4 +58,11 @@ a {
   overflow-y: auto;
   height: 100vh;
   padding-left: 12px;
+  height: 90vh;
+}
+
+.filter {
+  width: 100vw;
+  height: 40px;
+  background-color: grey;
 }

@@ -23,6 +23,27 @@ google.maps.event.addDomListener(window, 'load', initialize);
 {% endblock %}
 
 {% block content %}
+<div class="filter">
+  <form action="/lost_postings" method="POST">
+    <select name="Borough">
+      <option value="manhattan">Mahattan</option>
+      <option value="brooklyn">Brooklyn</option>
+      <option value="queens">Queens</option>
+      <option value="staten">Staten Island</option>
+    </select>
+    <select name="Category">
+      <option value="bags">Bags</option>
+      <option value="wallets">Wallets</option>
+      <option value="documents">Documents</option>
+      <option value="accessories">Accessories</option>
+      <option value="electronics">Electronics</option>
+      <option value="other">Other</option>
+    </select>
+    <!-- <select name="Date Lost"> -->
+    <input type="submit" name="Filter" value="filter">
+  </form>
+  <div>
+<div id="overflow">
 <div class="postings">
 <h1>Lost Items</h1>
 {% for item in lost_items %}
@@ -69,4 +90,5 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
 </div>
 <div id="sidemap"></div>
+</div>
 {% endblock %}

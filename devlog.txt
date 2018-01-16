@@ -107,3 +107,6 @@ fixed name formatting in devlog
 joyceW -- 2018-01-16 13:22
 made map work on lost postings html page, need to change home html and add more css
 
+joyceW -- 2018-01-16 15:36
+in the process of adding a filter bar on top
+
