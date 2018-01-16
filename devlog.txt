@@ -98,3 +98,6 @@ problems with css navbar, will change bootstrap around to make work
 
 cartegniA -- 2018-01-15 11:15
 added logo to navbar
+wuJ -- 2018-01-15 20:18
+more html changes, but not sure why listings dropdown won't go transparent at highlight
+
