@@ -1,6 +1,51 @@
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/*moves everything down so it doesn't overlap navbar*/
+body {
+  padding-top: 50px;
+}
+
+a {
+  color: white;
+}
+
+.btn {
+  color: white;
+  background-color: #ff1a4e;
+}
+
+.nav > li > a:hover, .navbar-brand:hover {
+  background-color: inherit;
+  color: white;
+}
+.navbar .nav .active > .dropdown-toggle, .navbar .nav .open.active > .dropdown-toggle {
+  background-color: transparent;
+}
+
 .navbar {
-  color: white
+  background-color: #ff1a4e;
+  opacity: 0.75;
   position: fixed;
-  top: 0;
   width: 100%;
+  font-size: 18px;
+}
+
+.navbar-brand {
+  font-size: 18px;
+}
+
+#map {
+  width:100vw;
+  height:100vh;
+}
+
+#sidemap {
+  width:50vw;
+  height: 100vh;
+}
+
+.posting_headings {
+  padding-right: 20px;
 }

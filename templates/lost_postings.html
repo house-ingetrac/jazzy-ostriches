@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Lost Items</h1><br><br>
+
+<div class="posting_headings"><h1>Lost Items</h1><br><br></div>
+<div class="postings">
 {% for item in lost_items %}
   <b>{{item[0]}}</b> <!--item-->
   Category: {{item[1]}}<br>
@@ -18,5 +20,8 @@
     {% endif %}
   <hr>
 {% endfor %}
+</div>
+<div id="sidemap">
+</div>
 
 {% endblock %}
