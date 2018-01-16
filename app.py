@@ -102,9 +102,9 @@ def find():
 def list_lost_items():
     #you are still allowed to see postings without logging in
     if not session.get('username'):
-        return render_template("lost_postings.html", loggedIn=False)
+        return render_template("lost_postings.html", loggedIn=False, api_key=map_api_key)
     else:
-        return render_template("lost_postings.html", loggedIn=True)
+        return render_template("lost_postings.html", loggedIn=True, api_key=map_api_key)
 
 @app.route('/found_postings', methods=['GET', 'POST'])
 def list_found_items():

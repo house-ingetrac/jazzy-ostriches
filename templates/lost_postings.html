@@ -1,9 +1,30 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block head %}
+<script src="https://maps.googleapis.com/maps/api/js?key={{api_key}}"></script>
+<script>
+var infowindow = new google.maps.InfoWindow();
+var listings = [[[40.76, -73.99], "wallet", 3]]
 
-<div class="posting_headings"><h1>Lost Items</h1><br><br></div>
+function initialize() {
+  var map = new google.maps.Map(document.getElementById('sidemap'), {
+    zoom: 13,
+    center: new google.maps.LatLng(40.76, -73.99), //center for times square
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  var marker = new google.maps.Marker({
+       position: new google.maps.LatLng(40.76, -73.99),
+       label: "15",
+       map: map
+  });
+};
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{% endblock %}
+
+{% block content %}
 <div class="postings">
+<h1>Lost Items</h1>
 {% for item in lost_items %}
   <b>{{item[0]}}</b> <!--item-->
   Category: {{item[1]}}<br>
@@ -20,8 +41,32 @@
     {% endif %}
   <hr>
 {% endfor %}
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
+<h2>Wallet</h2><br>
+<p>Blue wallet last seen at around 5 pm on the N train platform. fishadlkfjhsdjfklsdjfkldsjflkdjflksjdfkl;sfsjdfklsjflksjfkl;sjfkljsdfl;sjlfkjslk;fjdl;kfjslkfjldkfjlk;jdlk;fjslkjfklsjfdl;jklsfj</p>
 </div>
-<div id="sidemap">
-</div>
-
+<div id="sidemap"></div>
 {% endblock %}

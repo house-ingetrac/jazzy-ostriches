@@ -5,6 +5,7 @@ html {
 /*moves everything down so it doesn't overlap navbar*/
 body {
   padding-top: 50px;
+  overflow: hidden;
 }
 
 a {
@@ -42,10 +43,16 @@ a {
 }
 
 #sidemap {
-  width:50vw;
-  height: 100vh;
+  width: 50vw;
+  height: 95vh;
+  float: right;
+  background-color: black;
 }
 
-.posting_headings {
-  padding-right: 20px;
+.postings {
+  float: left;
+  width: 50vw;
+  overflow-y: auto;
+  height: 100vh;
+  padding-left: 12px;
 }
