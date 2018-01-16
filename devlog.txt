@@ -104,3 +104,6 @@ more html changes, but not sure why listings dropdown won't go transparent at hi
 
 alessandroC -- 2018-01-16 12:58
 fixed name formatting in devlog
+joyceW -- 2018-01-16 13:22
+made map work on lost postings html page, need to change home html and add more css
+
