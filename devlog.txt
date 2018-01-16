@@ -15,88 +15,92 @@ SoftDev1 Pd 7
 
 \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 
-cartegniA -- 2017-12-21 12:49
+alessandroC -- 2017-12-21 12:49
 devlog.txt
 
-leungB -- 2017-12-22 01:27
+brianL -- 2017-12-22 01:27
 added log.sh and the design doc
 
-cartegniA -- 2017-12-22 13:15
+alessandroC -- 2017-12-22 13:15
 fdbk: Clarify/simplify component map, refine database schema (more detail), more detail in sitemap
 
-wuJ -- 2018-01-02 16:38:44
+joyceW -- 2018-01-02 16:38:44
 created basic bootstrap and added login/signup html pages
 
-leungB -- 2018-01-03 12:49
+brianL -- 2018-01-03 12:49
 added updated design doc
 
-shifrinaD -- 2018-01-03 13:17
+dashaS -- 2018-01-03 13:17
 added updated design doc
 
-leungB -- 2018-01-03 13:19
+brianL -- 2018-01-03 13:19
 created account db
 
-wuJ -- 2018-01-03 13:19
+joyceW -- 2018-01-03 13:19
 started on map api integration
 
-wuJ -- 2018-01-04 20:06
+joyceW -- 2018-01-04 20:06
 more front-end developement and map integration, waiting on database
 
 leungB -- 2018-01-05 11:32
 Testing mailsend
 
-leungB -- 2018-01-05 13:02
+brianL -- 2018-01-05 13:02
 had import problems and badly formatted data, but the emails can send now!
 
-wuJ -- 2018-01-05 23:19
+joyceW -- 2018-01-05 23:19
 added basic flask account system and added more to html
 
-wuJ -- 2018-01-06 22:54
+joyceW -- 2018-01-06 22:54
 added acount system, worked on connecting html files in app.py
 
-wuJ -- 2018-01-07 15:50
+joyceW -- 2018-01-07 15:50
 added map to home.html using javascript, needs testing
 
-leungB -- 2018-01-07 17:39
+brianL -- 2018-01-07 17:39
 Updated README with more info and added magnifying glass emojis
 
-shifrinaD -- 2018-01-08 03:00
+dashaS -- 2018-01-08 03:00
 Created keys.txt file.
 
-shifrinaD -- 2018-01-08 03:23
+dashaS -- 2018-01-08 03:23
 Created lost post files and route for users to report lost items.
 
-shifrinaD -- 2018-01-08 03:30
+dashaS -- 2018-01-08 03:30
 Updated design doc component map for mailjet API.
 
-cartegniA -- 2018-01-08 13:15
+alessandroC -- 2018-01-08 13:15
 added key info to readme
 
-leungB -- 2018-01-08 13:20
+brianL -- 2018-01-08 13:20
 Migrating the mail system to the Mailjet V3 python wrapper. Far better customization.
 
-wuJ -- 2018-01-08 20:56
+joyceW -- 2018-01-08 20:56
 had a lot of problems with formatting map onto homepage, but working now. Waiting on items.db to fully implement markers on maps
 
 cartegniA -- 2018-01-10 12:58
 added email section to signup form
 
-leungB -- 2018-01-10 13:18
+brianL -- 2018-01-10 13:18
 Updated design doc even more to reflect schema of database.
 
-wuJ -- 2018-01-10 13:19
+joyceW -- 2018-01-10 13:19
 Fixed database schemas on python files.
 
-wuJ -- 2018-01-10 21:40
+joyceW -- 2018-01-10 21:40
 fixed html pages, reworked flask redirects, and account system now working. TIP: double brackets aren't needed to refer to a variable in a statement for jinja2
 
-wuJ -- 2018-01-11 20:17
+joyceW -- 2018-01-11 20:17
 added some changes to html pages, can't figure out why dropdown doesnt work in navbar
 
-wuJ -- 2018-01-14 22:44
+joyceW -- 2018-01-14 22:44
 problems with css navbar, will change bootstrap around to make work
 
-cartegniA -- 2018-01-15 11:15
+alessandroC -- 2018-01-15 11:15
 added logo to navbar
-wuJ -- 2018-01-15 20:18
+
+joyceW -- 2018-01-15 20:18
 more html changes, but not sure why listings dropdown won't go transparent at highlight
+
+alessandroC -- 2018-01-16 12:58
+fixed name formatting in devlog
