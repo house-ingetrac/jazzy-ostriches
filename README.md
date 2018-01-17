@@ -27,7 +27,7 @@ Lost in New York uses the Google Maps API, Lost and Found API, and Mailjet API t
 
 requirements.txt contains all the names of the dependencies needed.
 
-Includes: <b>requests</b>,
+Includes: <b>requests, mailjet_rest</b>,
 
 - Make sure requirements.txt is present
 - Run this command: <b> $ pip install -r requirements.txt</b>
