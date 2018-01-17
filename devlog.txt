@@ -111,3 +111,6 @@ made map work on lost postings html page, need to change home html and add more 
 joyceW -- 2018-01-16 15:36
 in the process of adding a filter bar on top
 
+dashaS -- 2018-01-16 21:06
+worked on database functions to allow all lost items of a user to be printed + function for registering lost items
+
