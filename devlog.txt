@@ -117,3 +117,6 @@ worked on database functions to allow all lost items of a user to be printed + f
 leungB -- 2018-01-16 21:34
 Added dataGet functions for the mailplane, will continue integrating with the send mail function
 
+leungB -- 2018-01-16 21:46
+integrated the dataGet functions with the sendMail function and added comments, will continue.
+
