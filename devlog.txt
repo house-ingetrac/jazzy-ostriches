@@ -42,7 +42,7 @@ started on map api integration
 joyceW -- 2018-01-04 20:06
 more front-end developement and map integration, waiting on database
 
-leungB -- 2018-01-05 11:32
+brianL -- 2018-01-05 11:32
 Testing mailsend
 
 brianL -- 2018-01-05 13:02
@@ -114,9 +114,9 @@ in the process of adding a filter bar on top
 dashaS -- 2018-01-16 21:06
 worked on database functions to allow all lost items of a user to be printed + function for registering lost items
 
-leungB -- 2018-01-16 21:34
+brianL -- 2018-01-16 21:34
 Added dataGet functions for the mailplane, will continue integrating with the send mail function
 
-leungB -- 2018-01-16 21:46
+brianL -- 2018-01-16 21:46
 integrated the dataGet functions with the sendMail function and added comments, will continue.
 
