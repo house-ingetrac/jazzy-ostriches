@@ -1,6 +1,11 @@
 import sqlite3
+import random
 
 # only has login functionality so far
+
+#fxns available: getting users, adding users, getting user's lost items, adding lost item to user account
+
+
 
 # -----FUNCTIONS FOR LOGIN SYSTEM-----
 # returns a dictionary for user data {user: pass}
@@ -29,7 +34,7 @@ def addUser(user, password, email):
 
 #print all lost items from user
 def lost_items(user):
-    db = sqlite3.connect("data/lost_and_found.db")
+    db = sqlite3.connect("/data/lost_and_found.db")
     c = db.cursor()
     a = 'SELECT username, l_lost FROM users'
     x = c.execute(a)
@@ -46,23 +51,24 @@ def lost_items(user):
 
 
 #add lost item to database
-def add_item(item, category, date, location, description):
-    db = sqlite3.connect("data/lost_and_found.db")
+def add_item(user, item, category, date, location, description):
+    db = sqlite3.connect("../data/lost_and_found.db")
     c = db.cursor()
-   #vals = [
-   #c.execute("INSERT INTO lost_items (username, pass, email) VALUES(?, ?, ?)", vals)
-   #x = c.execute(a)
-   # lost_items = {}
-   # for bar in x:
-   #     if(user == bar[0]):
-   #         wow = bar[1]
-   #         print wow
-    #        eyo = wow.split(",")
-    #        #INSERT LINE TO PRINT ITEMS BY NUMBER
+    item_id = random.randint(1,24324342) #make this better l8r
+    lost_items_vals = [item_id, item, description, category, user, 40.7589, 73.985]
+    c.execute("INSERT INTO lost_items (id, item, description, category, account_id, lat, long) VALUES(?, ?, ?, ?, ?, ?, ?)", lost_items_vals)
+    ##appending lost item
+    a = 'SELECT username, l_lost FROM users'
+    x = c.execute(a)
+    for bar in x:
+        if(user == bar[0]):
+            wow = bar[1]
+            wow+= "," + str(item_id)
+            c.execute("UPDATE users SET l_lost='" + wow + "' WHERE username = '" + user + "'")
     db.commit()
     db.close()
 
-
+add_item("joyce", "dog", "accessory", "5/12/2008", "Times Square", "where is it")
 
 #lost_items('joyce')
         
