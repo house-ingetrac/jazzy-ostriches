@@ -31,10 +31,42 @@ def addUser(user, password, email):
 def lost_items(user):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
-    a = 'SELECT username, l_lost FROM lost_items'
+    a = 'SELECT username, l_lost FROM users'
     x = c.execute(a)
     lost_items = {}
+    for bar in x:
+        if(user == bar[0]):
+            wow = bar[1]
+            print wow
+            eyo = wow.split(",")
+            #INSERT LINE TO PRINT ITEMS BY NUMBER
+    db.commit()
+    db.close()
 
+
+
+#add lost item to database
+def add_item(item, category, date, location, description):
+    db = sqlite3.connect("data/lost_and_found.db")
+    c = db.cursor()
+   #vals = [
+   #c.execute("INSERT INTO lost_items (username, pass, email) VALUES(?, ?, ?)", vals)
+   #x = c.execute(a)
+   # lost_items = {}
+   # for bar in x:
+   #     if(user == bar[0]):
+   #         wow = bar[1]
+   #         print wow
+    #        eyo = wow.split(",")
+    #        #INSERT LINE TO PRINT ITEMS BY NUMBER
+    db.commit()
+    db.close()
+
+
+
+#lost_items('joyce')
+        
+'''        
 # execute this file to create the initial database
 if __name__ == '__main__':
     # initialize database
@@ -47,4 +79,4 @@ if __name__ == '__main__':
     #table with postings for found items
     c.execute("CREATE TABLE found_items (id INT, item TEXT, description TEXT, category TEXT, account_id INT, lat FLOAT, long FLOAT);")
     db.commit()
-    db.close()
+    db.close()'''
