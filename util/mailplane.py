@@ -21,21 +21,6 @@ def getKey(keytype):
 	print "ERROR: missing file?"
 	return 1
 
-def sendVerificationEmail(userEmail):
-	API_SECRET = getKey(0)
-	API_KEY = getKey(1)
-
-	print(API_KEY)
-	print(API_SECRET)
-	#newSender = getUserData(userID)
-	mailjet = Client(auth=(API_KEY, API_SECRET), version='v3')
-	data = {
-  		'Email': userEmail #str(sender["email"])
-	}
-	result = mailjet.sender.create(data=data)
-	print result.status_code
-	print result.json()
-
 #Will send the email from the user with ownID to the owner of item with itemID
 #ownID: ID of sender
 #itemID: ID of item
@@ -56,7 +41,7 @@ def sendMail(ownID, itemID, itemLostOrFound):
 	    'FromName': 'Lost In New York - %s'%(str(sender["username"])),
 	    'Subject': 'About the item: %s'%(str(item["itemName"])),
 	    'Text-part': 'Your lost Item has been found',
-	    'Html-part': '<h3>*username* wants to contact you about *item*!</h3><br />YAY!<br />Please message %s about this item'%(str(sender["email"])),
+	    'Html-part': '<h3>%s wants to contact you about %s!</h3><br />YAY!<br />Please message %s about this item'%(str(sender["username"]),str(item["itemName"]),str(sender["email"])),
 	    'Recipients': [{'Email':str(receiver["email"])}]
 	}
 	print str(receiver["email"])
