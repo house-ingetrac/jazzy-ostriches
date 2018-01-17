@@ -37,13 +37,14 @@ def sendMail(ownID, itemID, itemLostOrFound):
 	item = getItemData(itemID,itemLostOrFound)
 	receiver = getUserData(item["itemOwner"])
 	data = {
-	    'FromEmail': sender["email"],
-	    'FromName': 'Lost In New York - %s'%(sender["username"]),
-	    'Subject': 'About the %s'%(item["itemName"]),
+	    'FromEmail': str(sender["email"]),
+	    'FromName': 'Lost In New York - %s'%(str(sender["username"])),
+	    'Subject': 'About the %s'%(str(item["itemName"])),
 	    'Text-part': 'Your lost Item has been found',
 	    'Html-part': '<h3>Dear passenger, welcome to Mailjet!</h3><br />May the delivery force be with you!',
-	    'Recipients': [{'Email':receiver["email"]}]
+	    'Recipients': [{'Email':str(receiver["email"])}]
 	}
+	print str(receiver["email"])
 	result = mailjet.send.create(data=data)
 	print result.status_code
 	print result.json()
@@ -92,5 +93,5 @@ def getUserData(userID):
 
 #print getUserData(1)
 #print getItemData(1,0)
-sendMail(1,2,0)
+sendMail(3,2,0)
 

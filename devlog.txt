@@ -123,3 +123,6 @@ integrated the dataGet functions with the sendMail function and added comments, 
 brianL -- 2018-01-16 22:11
 The send functions seems to work with the databases now, will have to do more testing and work.
 
+brianL -- 2018-01-16 22:22
+Noted that a sender address needs to be sent a confirmation email to actually send emails. Will work on
+
