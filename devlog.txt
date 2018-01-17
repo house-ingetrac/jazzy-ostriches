@@ -114,3 +114,6 @@ in the process of adding a filter bar on top
 dashaS -- 2018-01-16 21:06
 worked on database functions to allow all lost items of a user to be printed + function for registering lost items
 
+leungB -- 2018-01-16 21:34
+Added dataGet functions for the mailplane, will continue integrating with the send mail function
+

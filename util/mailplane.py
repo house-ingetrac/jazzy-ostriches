@@ -16,7 +16,7 @@ def getKey(keytype):
 	print "ERROR: missing file?"
 	return 1
 
-def sendMail(ownData, userData);
+def sendMail(ownData, userData):
 	API_SECRET = getKey(0)
 	API_KEY = getKey(1)
 
@@ -38,10 +38,36 @@ def sendMail(ownData, userData);
 	print result.status_code
 	print result.json()
 
+def getItemData(itemID,lostOrFound):
+	if lostOrFound == 0:
+		itemStatus = "lost_items"
+	else:
+		itemStatus = "found_items"
+	cmd = "SELECT * FROM %s WHERE id=%i"%(itemStatus,itemID)
+	db_name = "../data/lost_and_found.db"
+	dab = sqlite3.connect(db_name)
+	c = dab.cursor()
+	itemRawData = c.execute(cmd)
+	itemDict = {}
+	for itemData in itemRawData:
+		itemDict["itemName"]=itemData[1]
+		itemDict["itemDesc"]=itemData[2]
+		itemDict["itemOwner"]=itemData[4]
+	return itemDict
 
 def getUserData(userID):
-	return "ok"
+	cmd = "SELECT * FROM users WHERE id=%i"%(userID)
+	db_name = "../data/lost_and_found.db"
+	dab = sqlite3.connect(db_name)
+	c = dab.cursor()
+	users = c.execute(cmd)
+	userDict = {}
+	for userData in users:
+		userDict["username"] = userData[1] 
+		userDict["email"] = userData[2]
+	return userDict
 
-
+print getUserData(1)
+print getItemData(1,0)
 
 
