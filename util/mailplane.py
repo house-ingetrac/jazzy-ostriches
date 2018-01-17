@@ -26,7 +26,6 @@ def getKey(keytype):
 #itemID: ID of item
 #itemLostOrFound: Whether item is in lost or found table
 def sendMail(ownID, itemID, itemLostOrFound):
-	'''
 	API_SECRET = getKey(0)
 	API_KEY = getKey(1)
 
@@ -34,23 +33,20 @@ def sendMail(ownID, itemID, itemLostOrFound):
 	print(API_SECRET)
 	
 	mailjet = Client(auth=(API_KEY, API_SECRET), version='v3')
-	'''
 	sender = getUserData(ownID)
 	item = getItemData(itemID,itemLostOrFound)
 	receiver = getUserData(item["itemOwner"])
 	data = {
-	    'FromEmail': 'bleung@stuy.edu',
-	    'FromName': 'Lost In New York',
-	    'Subject': 'Something Has Been Found! - Lost In New York',
+	    'FromEmail': sender["email"],
+	    'FromName': 'Lost In New York - %s'%(sender["username"]),
+	    'Subject': 'About the %s'%(item["itemName"]),
 	    'Text-part': 'Your lost Item has been found',
 	    'Html-part': '<h3>Dear passenger, welcome to Mailjet!</h3><br />May the delivery force be with you!',
-	    'Recipients': [{'Email':'brianleung329@gmail.com'}]
+	    'Recipients': [{'Email':receiver["email"]}]
 	}
-	'''
 	result = mailjet.send.create(data=data)
 	print result.status_code
 	print result.json()
-	'''
 	print sender
 	print item
 	print receiver
@@ -96,5 +92,5 @@ def getUserData(userID):
 
 #print getUserData(1)
 #print getItemData(1,0)
-#sendMail(2,1,0)
+sendMail(1,2,0)
 

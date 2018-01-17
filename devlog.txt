@@ -120,3 +120,6 @@ Added dataGet functions for the mailplane, will continue integrating with the se
 leungB -- 2018-01-16 21:46
 integrated the dataGet functions with the sendMail function and added comments, will continue.
 
+brianL -- 2018-01-16 22:11
+The send functions seems to work with the databases now, will have to do more testing and work.
+
