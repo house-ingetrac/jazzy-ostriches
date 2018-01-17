@@ -34,7 +34,7 @@ requirements.txt contains all the names of the dependencies needed.
 Includes: <b>requests, mailjet_rest</b>,
 
 - Make sure requirements.txt is present
-- Run this command: <b> $ pip install -r requirements.txt</b>
+- Run this command: <b> `$ pip install -r requirements.txt`</b>
 
 ## How to run the application:
-- <b>$ python app.py</b>
+- <b>`$ python app.py`</b>
