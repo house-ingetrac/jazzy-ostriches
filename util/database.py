@@ -52,7 +52,7 @@ def lost_items(user):
 
 #add lost item to database
 def add_item(user, item, category, date, location, description):
-    db = sqlite3.connect("../data/lost_and_found.db")
+    db = sqlite3.connect("/data/lost_and_found.db")
     c = db.cursor()
     item_id = random.randint(1,24324342) #make this better l8r
     lost_items_vals = [item_id, item, description, category, user, 40.7589, 73.985]
@@ -68,15 +68,15 @@ def add_item(user, item, category, date, location, description):
     db.commit()
     db.close()
 
-add_item("joyce", "dog", "accessory", "5/12/2008", "Times Square", "where is it")
+#add_item("joyce", "dog", "accessory", "5/12/2008", "Times Square", "where is it")
 
 #lost_items('joyce')
-        
-'''        
+
+'''
 # execute this file to create the initial database
 if __name__ == '__main__':
     # initialize database
-    db = sqlite3.connect("../data/lost_and_found.db")
+    db = sqlite3.connect("/data/lost_and_found.db")
     c = db.cursor()
     # table for user login
     c.execute("CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, email TEXT, pass TEXT, l_found TEXT, l_lost TEXT);")
