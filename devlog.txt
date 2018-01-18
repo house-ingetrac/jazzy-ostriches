@@ -141,3 +141,6 @@ filter bar is looking good :))
 dashaS -- 2018-01-17 22:18
 added db entries
 
+dashaS -- 2018-01-18 09:12
+Created function for item listing that returns a dictionary of the following; [id, item, latitude, longitude]. will add location string and date once added to database scheme.
+
