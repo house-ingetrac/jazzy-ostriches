@@ -144,3 +144,6 @@ added db entries
 dashaS -- 2018-01-18 09:12
 Created function for item listing that returns a dictionary of the following; [id, item, latitude, longitude]. will add location string and date once added to database scheme.
 
+brianL -- 2018-01-18 09:12
+Working on getting email templates to work.
+
