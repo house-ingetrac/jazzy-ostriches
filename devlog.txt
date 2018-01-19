@@ -150,3 +150,6 @@ Working on getting email templates to work.
 brianL -- 2018-01-18 19:06
 The template is now usable, it keeps showing up under the Promotions tab however.
 
+joyceW -- 2018-01-18 19:56
+cleaned up css, formatted signup/login, got login popup box to work, but need to work on redirecting in flask app for login in home page
+
