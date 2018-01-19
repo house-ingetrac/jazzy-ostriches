@@ -1,8 +1,8 @@
+<img width="978" src="/static/logo-big.png">
+
 # jazzy-ostriches - :mag_right: Lost in New York :mag:
 
 #### Made by Alessandro Cartegni, Brian Leung, Dasha Shifrina, and Joyce Wu - SoftDev Pd. 7
-
-![Our logo!](/static/logo-wide.png)
 
 ### Have you ever lost something in NYC?
 Of course you have! With *__Lost in New York__*, never let that bother you again. Thanks to the kindness hidden deep down in the souls of all New Yorkers, any lost item that gets found will be yours once again. No longer will you need to retrace your steps or rummage through dirty lost and found bins when someone is safekeeping your item just for you! When you see something that belong to you on the map, just claim it and arrange via provided email contact when to get it back!
@@ -39,3 +39,11 @@ Includes: <b>requests, mailjet_rest, flask</b>
 
 ## How to run the application:
 - <b>`$ python app.py`</b>
+
+## The Team:
+|  Member  | Role |
+| ------------- | ------------- |
+| Alessandro | Project Manager |
+| Brian  | Account System & Messaging |
+| Dasha  | Databeses |
+| Joyce  | Item Postings & Frontend |
