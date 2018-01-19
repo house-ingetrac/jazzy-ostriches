@@ -1,2 +1,6 @@
 requests
 mailjet_rest
+sqlite3
+flask
+urllib2
+json
