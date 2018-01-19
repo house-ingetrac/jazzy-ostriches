@@ -21,11 +21,26 @@ def getKey(keytype):
 	print "ERROR: missing file?"
 	return 1
 
-#Will send the email from the user with selfID to the owner of item with itemID
-#selfID: ID of sender
+#Gets user ID of a username
+#If the function returns -1, the user does not exist
+def getUserID(username):
+	cmd = "SELECT * FROM users WHERE username='%s'"%(username)
+	db_name = "../data/lost_and_found.db"
+	dab = sqlite3.connect(db_name)
+	c = dab.cursor()
+	userRawData = c.execute(cmd)
+	retval = -1
+	for userArr in userRawData:
+		retval = userArr[0]
+	print retval
+	return retval
+	
+
+#Will send the email from the user with selfUser to the owner of item with itemID
+#selfUser: username of sender
 #itemID: ID of item
 #itemLostOrFound: Whether item is in lost or found table
-def sendMail(selfID, itemID, itemLostOrFound):
+def sendMail(selfUser, itemID, itemLostOrFound):
 	API_SECRET = getKey(0)
 	API_KEY = getKey(1)
 
@@ -33,7 +48,7 @@ def sendMail(selfID, itemID, itemLostOrFound):
 	#print(API_SECRET)
 	
 	mailjet = Client(auth=(API_KEY, API_SECRET), version='v3')
-	sender = getUserData(selfID)
+	sender = getUserData(selfUser)
 	item = getItemData(itemID,itemLostOrFound)
 	receiver = getUserData(item["itemOwner"])
 	data = {
@@ -127,4 +142,5 @@ def getUserData(userID):
 #print getUserData(1)
 #print getItemData(1,0)
 #sendMail(4,2,0)
+getUserID("brian")
 #sendVerificationEmail("Mank@bxscience.edu")
