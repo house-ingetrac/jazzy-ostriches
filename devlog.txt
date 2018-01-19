@@ -147,3 +147,6 @@ Created function for item listing that returns a dictionary of the following; [i
 brianL -- 2018-01-18 09:12
 Working on getting email templates to work.
 
+brianL -- 2018-01-18 19:06
+The template is now usable, it keeps showing up under the Promotions tab however.
+
