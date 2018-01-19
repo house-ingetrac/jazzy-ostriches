@@ -21,11 +21,11 @@ def getKey(keytype):
 	print "ERROR: missing file?"
 	return 1
 
-#Will send the email from the user with ownID to the owner of item with itemID
-#ownID: ID of sender
+#Will send the email from the user with selfID to the owner of item with itemID
+#selfID: ID of sender
 #itemID: ID of item
 #itemLostOrFound: Whether item is in lost or found table
-def sendMail(ownID, itemID, itemLostOrFound):
+def sendMail(selfID, itemID, itemLostOrFound):
 	API_SECRET = getKey(0)
 	API_KEY = getKey(1)
 
@@ -33,7 +33,7 @@ def sendMail(ownID, itemID, itemLostOrFound):
 	#print(API_SECRET)
 	
 	mailjet = Client(auth=(API_KEY, API_SECRET), version='v3')
-	sender = getUserData(ownID)
+	sender = getUserData(selfID)
 	item = getItemData(itemID,itemLostOrFound)
 	receiver = getUserData(item["itemOwner"])
 	data = {
@@ -55,32 +55,34 @@ def sendMail(ownID, itemID, itemLostOrFound):
     	}
 		]
 	}
-	#print str(receiver["email"])
+
 	result = mailjet.send.create(data=data)
-	'''
+	print result
+	print result.json()
+
+
+'''
 	filters = {
     'EditMode': 'tool',
     'Limit': '100',
     'OwnerType': 'user'
 	}
 	result = mailjet.template.get(filters=filters)
-	'''
-	print result
 	#print result.status_code
-	print result.json()
-
-#Will
-'''
 	print result.status_code
 	print result.json()
 	print sender
 	print item
 	print receiver
 '''
+
+
 #Will return a dictionary of info about a lost or found item.
+
+#{"itemName":name of item,"itemDesc":item description, "itemOwner":ID of owner of item}
+
 #itemID: ID of item
 #lostOrFound: Whether to look in the lost or found table
-#{"itemName":name of item,"itemDesc":item description, "itemOwner":ID of owner of item}
 #Note: lostOrFound takes an integer.
 #	   If lostOrFound = 0, it will search through the "lost_items" table
 #	   Else, it will search through the "found_items" table
@@ -102,9 +104,12 @@ def getItemData(itemID,lostOrFound):
 	return itemDict
 
 
+
 #Will return a dictionary of info about a user
-#userID: ID of user
+
 #{"username":username,"email":email of user}
+
+#userID: ID of user
 def getUserData(userID):
 	cmd = "SELECT * FROM users WHERE id=%i"%(userID)
 	db_name = "../data/lost_and_found.db"
@@ -117,7 +122,9 @@ def getUserData(userID):
 		userDict["email"] = userData[2]
 	return userDict
 
+#TESTING
+
 #print getUserData(1)
 #print getItemData(1,0)
-sendMail(4,2,0)
+#sendMail(4,2,0)
 #sendVerificationEmail("Mank@bxscience.edu")
