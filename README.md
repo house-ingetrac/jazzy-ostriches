@@ -1,4 +1,4 @@
-![Our logo!](/static/logo-big.png)
+<img width="978" src="/static/logo-big.png">
 
 # jazzy-ostriches - :mag_right: Lost in New York :mag:
 
@@ -45,5 +45,5 @@ Includes: <b>requests, mailjet_rest, flask</b>
 | ------------- | ------------- |
 | Alessandro | Project Manager |
 | Brian  | Account System & Messaging |
-| Dasha  | Item Posting & Databeses |
-| Joyce  | Frontend |
+| Dasha  | Databeses |
+| Joyce  | Item Postings & Frontend |
