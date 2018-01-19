@@ -2,14 +2,14 @@
 
 <!-- puts a signup for as content -->
 {% block content %}
-  <center>
-    <h2> Sign Up </h2>
+  <center><br>
+    <h2> Sign Up </h2><br>
     <form action = '/signup' method = 'POST'>
-      Username: <input type = 'text' name = 'username' required><br><br>
-      Email: <input type = 'text' name = 'email' required><br><br>
-      Password: <input type = 'password' name = 'password0' required><br><br>
-      Confirm Password: <input type = 'password' name = 'password1' required><br><br>
-      <input class="btn" type='submit' value='Create Account' name='signup'>
+      <input class="input" type ='text' name = 'username' placeholder="Username" required><br><br>
+      <input class="input" type ='text' name = 'email' placeholder="Email"required><br><br>
+      <input class="input" type='password' name ='password0' placeholder="Password"required><br><br>
+      <input class="input" type ='password' name ='password1' placeholder="Confirm Password" required><br><br>
+      <input class="btn" type='submit' value='Confirm' name='signup' style="width:250px;">
     </form>
   </center>
 {% endblock %}

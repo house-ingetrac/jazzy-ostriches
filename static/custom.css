@@ -14,26 +14,23 @@ a {
 .btn {
   color: white;
   background-color: #ff1a4e;
+  border-radius: 6px 6px 6px 6px;
+  padding: 6px 10px 6px 10px;
 }
-
-.nav > li > a:hover, .navbar-brand:hover {
-  background-color: inherit;
+.btn:hover {
+  opacity: 50%;
   color: white;
 }
-.navbar .nav .active > .dropdown-toggle, .navbar .nav .open.active > .dropdown-toggle {
-  background-color: transparent;
-}
 
-.navbar {
-  background-color: #ff1a4e;
-  opacity: 0.75;
-  position: fixed;
-  width: 100%;
-  font-size: 18px;
-}
-
-.navbar-brand {
-  font-size: 18px;
+.input {
+  border-radius: 5px 5px 5px 5px;
+  border-style: solid;
+  border-color: #d2d2d2;
+  border-width: 1px;
+  padding: 0px 10px 0px 10px;
+  height: 30px;
+  color: grey;
+  width: 250px;
 }
 
 #overflow {
@@ -45,6 +42,26 @@ a {
   height:100vh;
 }
 
+/* Navbar */
+.nav > li > a:hover, .navbar-brand:hover {
+  background-color: inherit;
+  color: white;
+}
+.navbar .nav .active > .dropdown-toggle, .navbar .nav .open.active > .dropdown-toggle {
+  background-color: transparent;
+}
+.navbar {
+  background-color: #ff1a4e;
+  opacity: 0.75;
+  position: fixed;
+  width: 100%;
+  font-size: 18px;
+}
+.navbar-brand {
+  font-size: 18px;
+}
+
+/* General Structure of Listings Pages */
 .postings {
   float: left;
   width: 50vw;
@@ -54,14 +71,20 @@ a {
   height: calc(100vh - 101px);
   background-color: #f2f2f2;
 }
+#sidemap {
+  width: 50vw;
+  height: calc(100vh - 101px);
+  float: right;
+  background-color: black;
+}
 
+/* Filter Bar */
 .filter {
   width: 100vw;
   height: 50px;
   background-color: white;
   padding: 10px;
 }
-
 .filter .filterdrop {
   border-width: 1px;
   border-color: #d2d2d2;
@@ -69,21 +92,17 @@ a {
   height: 30px;
   background-color: white;
 }
-
 .filter .filterdrop:hover {
   background-color: #f2f2f2;
 }
-
 #filterbtn {
   height: 30px;
   background-color: #ff1a4e;
   border-style: none;
   color: white;
-  border-radius: 6px 6px 6px 6px;
   padding-left: 10px;
   padding-right: 10px;
 }
-
 #white-block {
   width: 50px;
   height: 30px;
@@ -91,13 +110,11 @@ a {
   border-color: white;
   float: left;
 }
-
 #search-wrapper {
   float: left;
   height: 30px;
   width: 290px;
 }
-
 #search-input {
   height: 30px;
   width: 250px;
@@ -105,7 +122,6 @@ a {
   border-radius: 6px 0px 0px 6px;
   border-color: #ff1a4e;
 }
-
 #search-btn {
   height: 30px;
   width: 40px;
@@ -116,16 +132,46 @@ a {
   border-radius: 0px 6px 6px 0px;
 }
 
-#sidemap {
-  width: 50vw;
-  height: calc(100vh - 101px);
-  float: right;
-  background-color: black;
-}
-
-.add-on .input-group-btn > .btn {
+/* .add-on .input-group-btn > .btn {
   border-left-width:0;left:-2px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   width: 30px;
+} */
+
+/*Login Popup Box */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+  height: calc(50% + 10px);
+  width: 35%;
+  margin-left: 32%;
+  margin-right: 33%;
+  margin-top: 5%;
+  background: white;
+  border-style: none;
+  padding: 5px 10px 10px 10px;
+}
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }

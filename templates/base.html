@@ -25,7 +25,7 @@
           <li><a href="/profile">Profile</a></li>
           <li><a href="/logout">Log Out</a></li>
         {% else %}
-          <li><a href="/login">Log In</a></li>
+          <li><a href="#" id="popupbox">Log In</a></li>
           <li><a href="/signup">Sign Up</a></li>
         {% endif %}
           <li class="dropdown">
@@ -38,8 +38,46 @@
         </ul>
       </div>
     </nav>
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <center><br>
+          <h2> Login </h2><br>
+          <form action = '/login' method = 'POST'>
+            <input class="input" type='text' name='username' placeholder="Username" required><br><br>
+            <input class="input" type='password' name='password' placeholder="Password" required><br><br>
+            <input class="btn" type='submit' value='Submit' name='login' style="width:250px;">
+          </form><br>
+          <a href="/signup" style="color:blue">New user? Sign up here.</a>
+        </center>
+      </div>
+    </div>
 
     {% block content %}
     {% endblock %}
+    <script>
+      // Get the modal
+      var modal = document.getElementById('myModal');
+      // Get the button that opens the modal
+      var btn = document.getElementById("popupbox");
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+      // When the user clicks the button, open the modal
+      btn.onclick = function() {
+          modal.style.display = "block";
+      }
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+          modal.style.display = "none";
+      }
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == modal) {
+            console.log("hi");
+              modal.style.display = "none";
+          }
+      }
+    </script>
   </body>
 </html>
