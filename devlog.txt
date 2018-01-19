@@ -156,3 +156,5 @@ cleaned up css, formatted signup/login, got login popup box to work, but need to
 brianL -- 2018-01-19 13:08
 added getUserID function to help smooth out integration with other parts of software
 
+alessandroC -- 2018-01-19 13:11
+added big logo and table of team roles to readme
