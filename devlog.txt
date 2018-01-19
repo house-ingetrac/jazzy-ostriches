@@ -131,9 +131,22 @@ Finished database function to add lost items to users
 
 alessandroC -- 2018-01-17 12:51
 added project description/blurb to readme
+
 joyceW -- 2018-01-17 13:19
 continued working on filter bar
 
-joyceWu -- 2018-01-17 17:47
+joyceW -- 2018-01-17 17:47
 filter bar is looking good :))
+
+dashaS -- 2018-01-17 22:18
+added db entries
+
+dashaS -- 2018-01-18 09:12
+Created function for item listing that returns a dictionary of the following; [id, item, latitude, longitude]. will add location string and date once added to database scheme.
+
+brianL -- 2018-01-18 09:12
+Working on getting email templates to work.
+
+brianL -- 2018-01-18 19:06
+The template is now usable, it keeps showing up under the Promotions tab however.
 

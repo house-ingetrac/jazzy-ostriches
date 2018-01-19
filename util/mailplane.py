@@ -29,8 +29,8 @@ def sendMail(ownID, itemID, itemLostOrFound):
 	API_SECRET = getKey(0)
 	API_KEY = getKey(1)
 
-	print(API_KEY)
-	print(API_SECRET)
+	#print(API_KEY)
+	#print(API_SECRET)
 	
 	mailjet = Client(auth=(API_KEY, API_SECRET), version='v3')
 	sender = getUserData(ownID)
@@ -40,18 +40,43 @@ def sendMail(ownID, itemID, itemLostOrFound):
 	    'FromEmail': "bleung@stuy.edu",
 	    'FromName': 'Lost In New York - %s'%(str(sender["username"])),
 	    'Subject': 'About the item: %s'%(str(item["itemName"])),
-	    'Text-part': 'Your lost Item has been found',
-	    'Html-part': '<h3>%s wants to contact you about %s!</h3><br />YAY!<br />Please message %s about this item'%(str(sender["username"]),str(item["itemName"]),str(sender["email"])),
-	    'Recipients': [{'Email':str(receiver["email"])}]
+	    'MJ-TemplateID': '296066',
+	    'MJ-TemplateLanguage': 'true',
+	    'Recipients': [
+    	{
+    		'Email':str(receiver["email"]),
+    		'Vars':
+    		{
+    			"recvUser": str(receiver["username"]),
+    			"recvEmail": str(sender["email"]),
+    			"item": str(item["itemName"]),
+    			"sendUser": str(sender["username"])
+    		}
+    	}
+		]
 	}
-	print str(receiver["email"])
+	#print str(receiver["email"])
 	result = mailjet.send.create(data=data)
+	'''
+	filters = {
+    'EditMode': 'tool',
+    'Limit': '100',
+    'OwnerType': 'user'
+	}
+	result = mailjet.template.get(filters=filters)
+	'''
+	print result
+	#print result.status_code
+	print result.json()
+
+#Will
+'''
 	print result.status_code
 	print result.json()
 	print sender
 	print item
 	print receiver
-
+'''
 #Will return a dictionary of info about a lost or found item.
 #itemID: ID of item
 #lostOrFound: Whether to look in the lost or found table
@@ -75,6 +100,7 @@ def getItemData(itemID,lostOrFound):
 		itemDict["itemDesc"]=itemData[2]
 		itemDict["itemOwner"]=itemData[4]
 	return itemDict
+
 
 #Will return a dictionary of info about a user
 #userID: ID of user

@@ -1,9 +1,13 @@
 import sqlite3
 import random
 
+
+#dasha tasks:
+  # add date to lost & found databases
+  # 
 # only has login functionality so far
 
-#fxns available: getting users, adding users, getting user's lost items, adding lost item to user account
+#fxns available: getting users, adding users, getting user's lost items, adding lost item to user account, item listing
 
 
 
@@ -68,10 +72,35 @@ def add_item(user, item, category, date, location, description):
     db.commit()
     db.close()
 
+
+def item_listings():
+    db = sqlite3.connect("data/lost_and_found.db")
+    c = db.cursor()
+    a = 'SELECT * FROM lost_items'
+    x = c.execute(a)
+    item_list = {}
+    for bar in x:
+        item_id = bar[0]
+        item_name = bar[1]
+        item_desc = bar[2]
+        item_lat = bar[5]
+        item_long = bar[6]
+        ##add vars for location string and date
+        item_list[title] = {}
+        item_list[title]['item_id'] = item_id
+        item_list[title]['item_name'] = item_name
+        item_list[title]['item_desc'] = item_desc
+        item_list[title]['item_lat'] = item_lat
+        item_list[title]['item_long'] = item_long
+        ##add rows for location string and date
+    db.commit()
+    db.close()
+    return item_list
+
 #add_item("joyce", "dog", "accessory", "5/12/2008", "Times Square", "where is it")
 
 #lost_items('joyce')
-
+                                   
 '''
 # execute this file to create the initial database
 if __name__ == '__main__':
