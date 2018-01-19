@@ -4,7 +4,7 @@ import random
 
 #dasha tasks:
   # add date to lost & found databases
-  # 
+  #
 # only has login functionality so far
 
 #fxns available: getting users, adding users, getting user's lost items, adding lost item to user account, item listing
@@ -78,7 +78,7 @@ def item_listings():
     c = db.cursor()
     a = 'SELECT * FROM lost_items'
     x = c.execute(a)
-    item_list = {}
+    item_list = []
     for bar in x:
         item_id = bar[0]
         item_name = bar[1]
@@ -86,21 +86,27 @@ def item_listings():
         item_lat = bar[5]
         item_long = bar[6]
         ##add vars for location string and date
-        item_list[title] = {}
-        item_list[title]['item_id'] = item_id
-        item_list[title]['item_name'] = item_name
-        item_list[title]['item_desc'] = item_desc
-        item_list[title]['item_lat'] = item_lat
-        item_list[title]['item_long'] = item_long
+        item = {}
+        item['item_id'] = item_id
+        item['item_name'] = item_name
+        item['item_desc'] = item_desc
+        item['item_lat'] = item_lat
+        item['item_long'] = item_long
+        item_list.append(item)
         ##add rows for location string and date
     db.commit()
     db.close()
     return item_list
 
-#add_item("joyce", "dog", "accessory", "5/12/2008", "Times Square", "where is it")
+#print(item_listings())
+# add_item("joyce", "house", "accessory", "5/12/2008", "Times Square", "where is it")
+# add_item("joyce", "boot", "accessory", "5/12/2008", "Times Square", "where is it")
+# add_item("joyce", "yaya", "accessory", "5/12/2008", "Times Square", "where is it")
+# add_item("joyce", "hehe", "accessory", "5/12/2008", "Times Square", "where is it")
+# add_item("joyce", "luppo", "accessory", "5/12/2008", "Times Square", "where is it")
 
 #lost_items('joyce')
-                                   
+
 '''
 # execute this file to create the initial database
 if __name__ == '__main__':

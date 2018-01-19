@@ -100,7 +100,7 @@ def find():
 
 @app.route('/lost_postings', methods=['GET', 'POST'])
 def list_lost_items():
-    list = database.get_lost_items()
+    list = database.item_listings()
     #you are still allowed to see postings without logging in
     if not session.get('username'):
         return render_template("lost_postings.html", loggedIn=False, api_key=map_api_key, listings=list)

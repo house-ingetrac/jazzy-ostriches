@@ -2,15 +2,33 @@
 
 {% block head %}
 <script src="https://maps.googleapis.com/maps/api/js?key={{api_key}}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="map"></div>
+<div class="container">
+  <h1 class="my-4">Welcome to Lost in New York</h1>
+  <p>This is your one stop website to finding lost items and reporting found items.
+    From cats to wallets to keys, use this website to find what you're looking for.
+    Don't get lost in the big ol' apple...</p>
+  <center>
+    <!--MUST CHECK FOR CORRECT ROUTE-->
+    <a class="btn" href="/">LOST</a> |
+    <a class="btn" href="/found">FOUND</a>
+  </center>
+  <br><br><br>
+</div>
 <script>
-  var infowindow = new google.maps.InfoWindow();
-  var listings = [[[40.76, -73.99], "wallet", 3]]//{{posts}}; //list in format [[[lat, long], item, post id]]
-  //finds number of Markers
-  //var all_locations = [];
-  //for each (listing in listings){
+  // var infowindow = new google.maps.InfoWindow();
+  // var listings = "{{listings}}"; //list of items; each item has a dictionary
+  // //finds number of Markers
+  // var all_locations = [];
+  // for each (listing in listings){
+  //   console.log(listing)
   //  all_locations.push(list[0])
-  //};
-  //var markers = all_locations.filter(onlyUnique); //filter to find all unique all_locations
+  // };
+  // var markers = all_locations.filter(onlyUnique); //filter to find all unique all_locations
+  // console.log("markers");
 
   //helper function: adds postings to each marker on click
   // function add_postings(marker, i, items_list) {
@@ -63,21 +81,4 @@
 
   google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-{% endblock %}
-
-{% block content %}
-<div id="map"></div>
-<div class="container">
-  <h1 class="my-4">Welcome to Lost in New York</h1>
-  <p>This is your one stop website to finding lost items and reporting found items.
-    From cats to wallets to keys, use this website to find what you're looking for.
-    Don't get lost in the big ol' apple...</p>
-  <center>
-    <!--MUST CHECK FOR CORRECT ROUTE-->
-    <a class="btn" href="/">LOST</a> |
-    <a class="btn" href="/found">FOUND</a>
-  </center>
-  <br><br><br>
-</div>
-
 {% endblock %}
