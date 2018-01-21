@@ -67,15 +67,27 @@ a {
   width: 50vw;
   overflow-y: auto;
   height: 100vh;
-  padding-left: 12px;
   height: calc(100vh - 101px);
   background-color: #f2f2f2;
+  padding-bottom: 25px;
 }
 #sidemap {
   width: 50vw;
   height: calc(100vh - 101px);
   float: right;
   background-color: black;
+}
+#post-container {
+  width: 15vw;
+  height: 250px;
+  background-color: white;
+  border: none;
+  border-radius: 6px 6px 6px 6px;
+  color: black;
+  padding: 0px 15px 15px 15px;
+  float: left;
+  margin-left: 18px;
+  margin-top: 15px;
 }
 
 /* Filter Bar */
@@ -102,6 +114,7 @@ a {
   color: white;
   padding-left: 10px;
   padding-right: 10px;
+  border-radius: 5px 5px 5px 5px;
 }
 #white-block {
   width: 50px;

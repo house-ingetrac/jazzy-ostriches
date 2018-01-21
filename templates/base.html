@@ -38,24 +38,27 @@
         </ul>
       </div>
     </nav>
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <center><br>
-          <h2> Login </h2><br>
-          <form action = '/login' method = 'POST'>
-            <input class="input" type='text' name='username' placeholder="Username" required><br><br>
-            <input class="input" type='password' name='password' placeholder="Password" required><br><br>
-            <input class="btn" type='submit' value='Submit' name='login' style="width:250px;">
-          </form><br>
-          <a href="/signup" style="color:blue">New user? Sign up here.</a>
-        </center>
+    {% if not loggedIn %}
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <center><br>
+            <h2> Login </h2><br>
+            <form action = '/login' method = 'POST'>
+              <input class="input" type='text' name='username' placeholder="Username" required><br><br>
+              <input class="input" type='password' name='password' placeholder="Password" required><br><br>
+              <input class="btn" type='submit' value='Submit' name='login' style="width:250px;">
+            </form><br>
+            <a href="/signup" style="color:blue">New user? Sign up here.</a>
+          </center>
+        </div>
       </div>
-    </div>
+    {% endif %}
 
     {% block content %}
     {% endblock %}
+    {% if not loggedIn %}
     <script>
       // Get the modal
       var modal = document.getElementById('myModal');
@@ -79,5 +82,6 @@
           }
       }
     </script>
+    {% endif %}
   </body>
 </html>

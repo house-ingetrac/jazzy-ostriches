@@ -115,6 +115,14 @@ def list_found_items():
     else:
         return render_template("found_postings.html", loggedIn=True)
 
+@app.route('/single_posting', methods=['GET', 'POST'])
+def single_post():
+    #retrieves item post id and sends info back to computer about item
+    if not session.get('username'):
+        return render_template("single_posting.html", loggedIn=False, item="")
+    else:
+        return render_template("single_posting.html", loggedIn=True, item="")
+
 if __name__ == "__main__":
     app.debug = True
     app.run()

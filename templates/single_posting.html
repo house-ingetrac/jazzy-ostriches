@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+<h1>{{item['item_name']}}</h1><br>
+Category: {{item['item_cat']}}<br>
+Date: {{item['item_date']}}<br>
+Location: {{item['item_loc']}}<br>
+Description:
+  {% if item['item_desc'] == '' %} N/A
+  {% else %} {{item['item_desc']}} {% endif %}
+  <br><br>
+
+Think this item is yours? Contact the person that found it!<br>
+<form action=# method="POST">
+  <input type="submit" class="btn" name="email" value="Contact">
+  <input type="hidden" name="item_id" value="{{item['item_id']}}">
+  <input type="hidden" name="sender" value="{{username}}">
+</form>

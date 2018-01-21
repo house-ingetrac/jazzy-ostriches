@@ -56,7 +56,7 @@ def lost_items(user):
 
 #add lost item to database
 def add_item(user, item, category, date, location, description):
-    db = sqlite3.connect("/data/lost_and_found.db")
+    db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     item_id = random.randint(1,24324342) #make this better l8r
     lost_items_vals = [item_id, item, description, category, user, 40.7589, 73.985]
@@ -98,13 +98,12 @@ def item_listings():
     db.close()
     return item_list
 
-#print(item_listings())
-# add_item("joyce", "house", "accessory", "5/12/2008", "Times Square", "where is it")
-# add_item("joyce", "boot", "accessory", "5/12/2008", "Times Square", "where is it")
-# add_item("joyce", "yaya", "accessory", "5/12/2008", "Times Square", "where is it")
-# add_item("joyce", "hehe", "accessory", "5/12/2008", "Times Square", "where is it")
-# add_item("joyce", "luppo", "accessory", "5/12/2008", "Times Square", "where is it")
-
+# add_item("joyce", "house", "accessory", 0, 40.76, -73.99)
+# add_item("joyce", "boot", "accessory", 0, 40.76, -73.99)
+# add_item("joyce", "yaya", "accessory", 0, 40.76, -73.99)
+# add_item("joyce", "hehe", "accessory", 0, 40.76, -73.99)
+# add_item("joyce", "luppo", "accessory", 0, 40.76, -73.99)
+# print(item_listings())
 #lost_items('joyce')
 
 '''
