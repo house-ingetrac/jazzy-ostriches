@@ -158,3 +158,6 @@ added getUserID function to help smooth out integration with other parts of soft
 
 alessandroC -- 2018-01-19 13:11
 added big logo and table of team roles to readme
+joyceW -- 2018-01-20 22:42
+continued working on css for postings, trying to get javascript for map to work
+
