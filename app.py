@@ -111,6 +111,8 @@ def find():
     if found:
         return render_template("single_posting.html") #use ajax instead, if not found, give option to add posting
     else:
+        if "item" in r and "category" in r and "location" in r and "date" in r and "description" in r:
+            database.add_lost_item(username, r["item"],r["category"], r["date"], r["location"], r["description"])
         flash("Sorry, we could not find a match. We will add your lost item to the listing.")
         return redirect(url_for('list_lost_items'))
 

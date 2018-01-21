@@ -167,3 +167,6 @@ Finalized database functions for item_listing and adding lost_items w numerical 
 dariaS -- 2018-01-21 01:13
 finished form for reporting found items. adds found item to two databases: one to the user who reports it and one to the found database.
 
+dashaS -- 2018-01-21 01:59
+worked on rereporting losting items through form as well as connecting lost to possible found items for a match.
+
