@@ -81,6 +81,7 @@ def lost_item():
     else:
         return render_template("create_lost_post.html", loggedIn = True)
 
+#route for reporting an item user found
 @app.route('/found', methods=['GET', 'POST'])
 def post():
     if not session.get('username'):
@@ -88,6 +89,21 @@ def post():
         return redirect(url_for('authentication'))
     else:
         return render_template('create_posting.html') #go back and add more variables
+
+#route for creating listing for found item
+
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    if not session.get('username'):
+        flash("Yikes! You need to log in first.")
+        return redirect(url_for('authentication'))
+    username = session.get('username')
+    r = request.form
+    if "item" in r and "category" in r and "location" in r and "date" in r and "description" in r:
+        database.add_found_item(username, r["item"],r["category"], r["date"], r["location"], r["description"])
+        return redirect(url_for("list_found_items"))
+    flash("Your item was not reported properly. Please try again.")
+    return redirect('/found')
 
 @app.route('/find_item', methods=['GET', 'POST'])
 def find():

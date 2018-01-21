@@ -164,3 +164,6 @@ continued working on css for postings, trying to get javascript for map to work
 dariaS -- 2018-01-20 23:56
 Finalized database functions for item_listing and adding lost_items w numerical ids, location, and date.
 
+dariaS -- 2018-01-21 01:13
+finished form for reporting found items. adds found item to two databases: one to the user who reports it and one to the found database.
+
