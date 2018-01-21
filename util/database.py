@@ -52,15 +52,23 @@ def lost_items(user):
     db.commit()
     db.close()
 
+##helper fxn for last id
 
+def last_id():
+    db = sqlite3.connect("/data/lost_and_found.db")
+    c = db.cursor()
+    last_id = 'SELECT * FROM lost_items WHERE id=(SELECT max(id) FROM lost_items)'
+    x = c.execute(last_id)
+    for bar in x:
+        return bar[0]
 
 #add lost item to database
 def add_item(user, item, category, date, location, description):
-    db = sqlite3.connect("data/lost_and_found.db")
+    db = sqlite3.connect("/data/lost_and_found.db")
     c = db.cursor()
-    item_id = random.randint(1,24324342) #make this better l8r
-    lost_items_vals = [item_id, item, description, category, user, 40.7589, 73.985]
-    c.execute("INSERT INTO lost_items (id, item, description, category, account_id, lat, long) VALUES(?, ?, ?, ?, ?, ?, ?)", lost_items_vals)
+    item_id = last_id() + 1
+    lost_items_vals = [item_id, item, description, category, user, location, 40.7589, 73.985, date]
+    c.execute("INSERT INTO lost_items (id, item, description, category, account_id, location, lat, long, date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", lost_items_vals)
     ##appending lost item
     a = 'SELECT username, l_lost FROM users'
     x = c.execute(a)
@@ -72,9 +80,11 @@ def add_item(user, item, category, date, location, description):
     db.commit()
     db.close()
 
+#add_item("joyce", "house", "accessory", 0, 40.76, -73.99)
+
 
 def item_listings():
-    db = sqlite3.connect("data/lost_and_found.db")
+    db = sqlite3.connect("/data/lost_and_found.db")
     c = db.cursor()
     a = 'SELECT * FROM lost_items'
     x = c.execute(a)
@@ -83,8 +93,10 @@ def item_listings():
         item_id = bar[0]
         item_name = bar[1]
         item_desc = bar[2]
-        item_lat = bar[5]
-        item_long = bar[6]
+        item_lat = bar[6]
+        item_long = bar[7]
+        item_location = bar[5]
+        item_date = bar[8]
         ##add vars for location string and date
         item = {}
         item['item_id'] = item_id
@@ -92,13 +104,15 @@ def item_listings():
         item['item_desc'] = item_desc
         item['item_lat'] = item_lat
         item['item_long'] = item_long
+        item['item_location'] = item_location
+        item['item_date'] = item_date
         item_list.append(item)
         ##add rows for location string and date
     db.commit()
     db.close()
     return item_list
 
-# add_item("joyce", "house", "accessory", 0, 40.76, -73.99)
+#print item_listings()
 # add_item("joyce", "boot", "accessory", 0, 40.76, -73.99)
 # add_item("joyce", "yaya", "accessory", 0, 40.76, -73.99)
 # add_item("joyce", "hehe", "accessory", 0, 40.76, -73.99)
