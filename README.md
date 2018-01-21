@@ -45,5 +45,5 @@ Includes: <b>requests, mailjet_rest, flask</b>
 | ------------- | ------------- |
 | Alessandro | Project Manager |
 | Brian  | Account System & Messaging |
-| Dasha  | Databeses |
+| Dasha  | Databases |
 | Joyce  | Item Postings & Frontend |
