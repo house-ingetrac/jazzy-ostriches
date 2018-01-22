@@ -8,6 +8,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from util import auth, database
 import urllib2, json
+from util import mailplane
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -15,7 +16,7 @@ app.secret_key = os.urandom(32)
 #opens api key text file and retrieves keys
 f = open("keys.txt", "r")
 apis = f.read().split("\n")
-map_api_key = apis[0]
+map_api_key = apis[1]
 
 #homepage
 @app.route("/")
@@ -142,6 +143,16 @@ def single_post():
     else:
         print(item)
         return render_template("single_posting.html", loggedIn=True, item=item)
+
+@app.route('/send', methods = ['GET','POST'])
+def send():
+    userID = int(mailplane.getUserID(session.get('username')))
+    itemID = int(request.args.get('item_id'))
+    mailplane.sendMail(userID,itemID,0)
+    return redirect('/sent')
+@app.route('/sent', methods = ['GET','POST'])
+def sent():
+    return render_template("sent.html", loggedIn=True)
 
 if __name__ == "__main__":
     app.debug = True

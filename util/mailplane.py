@@ -13,7 +13,7 @@ def getKey(keytype):
 		N = 5
 	else:
 		N = 3
-	with open('../keys.txt', 'rb') as passport:
+	with open('keys.txt', 'rb') as passport:
 		reader = csv.reader(passport)
 		for i, row in enumerate(reader):
 			if i == N:
@@ -25,7 +25,7 @@ def getKey(keytype):
 #If the function returns -1, the user does not exist
 def getUserID(username):
 	cmd = "SELECT * FROM users WHERE username='%s'"%(username)
-	db_name = "../data/lost_and_found.db"
+	db_name = "data/lost_and_found.db"
 	dab = sqlite3.connect(db_name)
 	c = dab.cursor()
 	userRawData = c.execute(cmd)
@@ -107,7 +107,7 @@ def getItemData(itemID,lostOrFound):
 	else:
 		itemStatus = "found_items"
 	cmd = "SELECT * FROM %s WHERE id=%i"%(itemStatus,itemID)
-	db_name = "../data/lost_and_found.db"
+	db_name = "data/lost_and_found.db"
 	dab = sqlite3.connect(db_name)
 	c = dab.cursor()
 	itemRawData = c.execute(cmd)
@@ -127,7 +127,7 @@ def getItemData(itemID,lostOrFound):
 #userID: ID of user
 def getUserData(userID):
 	cmd = "SELECT * FROM users WHERE id=%i"%(userID)
-	db_name = "../data/lost_and_found.db"
+	db_name = "data/lost_and_found.db"
 	dab = sqlite3.connect(db_name)
 	c = dab.cursor()
 	users = c.execute(cmd)
@@ -142,5 +142,5 @@ def getUserData(userID):
 #print getUserData(1)
 #print getItemData(1,0)
 #sendMail(4,2,0)
-getUserID("brian")
+#getUserID("brian")
 #sendVerificationEmail("Mank@bxscience.edu")
