@@ -80,13 +80,30 @@ def find_match(lost_item, category, location, description):
     c = db.cursor()
     a = 'SELECT * from found_items'
     x = c.execute(a)
-    possible_matches = {} 
+    possible_matches = []
     for bar in x:
         int similarity = 0
-        if(lost_item == bar[0]):
+        if(lost_item == bar[1]):
             similarity += 2
-        if(category ==
-            #INSERT LINE TO PRINT ITEMS BY NUMBER
+        if(description == bar[2]):
+            similarity += 20
+        if(category == bar[3]):
+            similarity += 1
+        if(location == bar[5]):
+            similarity += 2
+        if similarity > 0:
+        item = {}
+        item['item_id'] = bar[0]
+        item['item_name'] = bar[1]
+        item['item_desc'] = bar[2]
+        item['item_cat'] = bar[3]
+        item['item_acc_id'] = bar[4]
+        item['item_location'] = bar[5]
+        item['item_lat'] = bar[6]
+        item['item_long'] = bar[7]
+        item['bar_date'] = bar[8]
+        item['similarity'] = similarity
+        possible_matches.append(item)
     db.commit()
     db.close()
     
