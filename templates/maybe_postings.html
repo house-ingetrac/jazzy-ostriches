@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br><h1>Here are some items that may possibly be yours:</h1><br>
+{% for listing in listings %}
+  <h3>{{listing['item_name']}}</h3><br>
+  Category: {{listing['item_cat']}}<br>
+  Date Found: {{listing['item_date']}}<br>
+  Location: {{listing['item_location']}}<br>
+  Description:
+    {% if listing['item_desc'] == '' %} N/A
+    {% else %} {{listing['item_desc']}} {% endif %} <br>
+  <form action='/single_posting' method="POST">
+    <input type="submit" value="See More" name="more" class="btn">
+  </form>
+  <hr>
+{% endfor %}
+<br>Not what you were looking for? We can add your post to the lost listings: <br>
+<form action="/lost_postings" method="POST">
+  <input type="submit" value="Add" name="add_post" class="btn">
+</form>
+{% endblock %}

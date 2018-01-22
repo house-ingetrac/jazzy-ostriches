@@ -34,7 +34,7 @@ def getUserID(username):
 		retval = userArr[0]
 	print retval
 	return retval
-	
+
 
 #Will send the email from the user with selfUser to the owner of item with itemID
 #selfUser: username of sender
@@ -46,7 +46,7 @@ def sendMail(selfUser, itemID, itemLostOrFound):
 
 	#print(API_KEY)
 	#print(API_SECRET)
-	
+
 	mailjet = Client(auth=(API_KEY, API_SECRET), version='v3')
 	sender = getUserData(selfUser)
 	item = getItemData(itemID,itemLostOrFound)
@@ -126,14 +126,14 @@ def getItemData(itemID,lostOrFound):
 
 #userID: ID of user
 def getUserData(userID):
-	cmd = "SELECT * FROM users WHERE id=%i"%(userID)
+	cmd = 'SELECT * FROM users WHERE id='+str(userID)
 	db_name = "data/lost_and_found.db"
 	dab = sqlite3.connect(db_name)
 	c = dab.cursor()
 	users = c.execute(cmd)
 	userDict = {}
 	for userData in users:
-		userDict["username"] = userData[1] 
+		userDict["username"] = userData[1]
 		userDict["email"] = userData[2]
 	return userDict
 

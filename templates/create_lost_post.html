@@ -1,21 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-What did you lose?
-<form action="/find_item" method="POST">
-  Item: <input type="text" name="item" required><br>
-  Category:
-    <select name="category">
-      <option value="bags">Bags</option>
-      <option value="wallets">Wallets</option>
-      <option value="documents">Documents</option>
-      <option value="accessories">Accessories</option>
-      <option value="electronics">Electronics</option>
-      <option value="other">Other</option>
-    </select>
-  Date Lost: <input type="text" name="date"><br>
-  Location Lost: <input type="text" name="location"><br>
-  Description: <input type="text" name="description"><br>
-  <input type="submit" name="Submit" value="find">
-</form>
+<center>
+  <h1>What did you lose?</h1><br>
+  <form action="/find_item" method="POST">
+    Item: <input class="input" type="text" name="item" required><br><br>
+    Category:
+      <select class="filter" style="width:200px; height:30px;" name="category">
+        <option value="bags">Bags</option>
+        <option value="wallets">Wallets</option>
+        <option value="documents">Documents</option>
+        <option value="accessories">Accessories</option>
+        <option value="electronics">Electronics</option>
+        <option value="other">Other</option>
+      </select><br><br>
+    Date Lost: <input class="input" type="text" name="date"><br><br>
+    Location Lost: <input class="input" type="text" name="location"><br><br>
+    Description: <input class="input" type="text" name="description"><br><br>
+    <input class="btn" type="submit" name="Submit" value="find">
+  </form>
+</center>
 {% endblock %}

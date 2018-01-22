@@ -183,3 +183,6 @@ combined mail with the software!!!
 dariaS -- 2018-01-22 15:51
 Fixed lost and found items to increment properly. Coded function to link lost items to possible found items. Will need to connect to frontend.
 
+joyceW -- 2018-01-22 17:21
+created maybe postings page and formatted find lost page
+
