@@ -4,20 +4,18 @@
 <script src="https://maps.googleapis.com/maps/api/js?key={{api_key}}"></script>
 <script>
 var infowindow = new google.maps.InfoWindow();
-var listings = "{{listings}}".slice(1, -1);
-//listings = JSON.parse("[" + listings + "]");
-
-// example dictionary
-// [{'item_id': 1, 'item_name': u'crossbow', 'item_desc': u'a family heirloom, my grandpa used to be a werewolf hunter, idk', 'item_lat': 0.0, 'item_long': 0.0}, {'item_id': 2, 'item_name': u'my purpose of existence', 'item_desc': u'I had it before and it was great, but I dropped it somewhere in stuy', 'item_lat': 0.0, 'item_long': 0.0}, {'item_id': 3, 'item_name': u'dog', 'item_desc': u'where is it', 'item_lat': 40.7589, 'item_long': 73.985}, {'item_id': 4, 'item_name': u'dog', 'item_desc': u'where is it', 'item_lat': 40.7589, 'item_long': 73.985}, {'item_id': 5, 'item_name': u'doorknob', 'item_desc': u'brass', 'item_lat': 44.23, 'item_long': 80.434}, {'item_id': 6, 'item_name': u'protein shake', 'item_desc': u'i need my protein to get lean', 'item_lat': 22.43, 'item_long': 95.3578}, {'item_id': 7, 'item_name': u'almond milk', 'item_desc': u'its not milk, tastes nutty', 'item_lat': 65.345, 'item_long': 43.8745}, {'item_id': 8, 'item_name': u'umbrella', 'item_desc': u'pink and super cute, wooden handle', 'item_lat': 22.876, 'item_long': 65.3422}]
-
-// finds number of Markers
-var all_locations = [];
-for (var listing in listings){
- all_locations.push([listing['item_lat'], listing['item_long']]);
-};
-var markers = [... new Set(all_locations)] //filter to find all unique all_locations
-// JSON.stringify(markers);
-// console.log(markers);
+var listing = "{{unique}}".slice(1, -1);
+var listings_list = listing.split("), ");
+var lists = [];
+for (var post = 0; post < listings_list.length; post++){
+  if (post == listings_list.length-1){
+    nums = [parseFloat(listings_list[post].split(", ")[0].slice(1)), parseFloat(listings_list[post].split(", ")[1].slice(0, -1))];
+  }else{
+    nums = [parseFloat(listings_list[post].split(", ")[0].slice(1)), parseFloat(listings_list[post].split(", ")[1])];
+  }
+  lists.push(nums);
+  console.log(lists);
+}
 
 //helper function: adds postings to each marker on click
 // function add_postings(marker, i, items_list) {
@@ -48,6 +46,14 @@ function initialize() {
        label: "15",
        map: map
   });
+  for(var loc = 0; loc < lists.length; loc++){
+    console.log(lists[loc]);
+    var mark = new google.maps.Marker({
+      position: new google.maps.LatLng(lists[loc][0], lists[loc][1]),
+      label: "HA",
+      map: map
+    });
+  };
 };
 
 //add markers to map
@@ -67,6 +73,7 @@ function initialize() {
 //   });
 //   google.maps.event.addListener(marker, 'click', add_postings(marker, i, items));
 // };
+
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 {% endblock %}

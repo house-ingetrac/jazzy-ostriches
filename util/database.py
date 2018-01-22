@@ -114,7 +114,7 @@ def add_found_item(user, item, category, date, location, description):
             c.execute("UPDATE users SET l_found='" + wow + "' WHERE username = '" + user + "'")
     db.commit()
     db.close()
-    
+
 add_found_item("joyce", "house", "accessory", "06/08/2018", "Times Square", "I couldn't find the owner so I broke in. Lmk if its yours. Yellow with a wooden awning. 3 bedroom.")
 
 
@@ -146,6 +146,24 @@ def item_listings():
     db.commit()
     db.close()
     return item_list
+
+def find_unique_locations():
+    db = sqlite3.connect("data/lost_and_found.db")
+    c = db.cursor()
+    a = 'SELECT lat, long FROM lost_items'
+    x = c.execute(a)
+    locations = []
+    for loc in x:
+        if (loc not in locations):
+            locations.append(loc)
+    return locations
+
+def get_item(id):
+    db = sqlite3.connect("data/lost_and_found.db")
+    c = db.cursor()
+    a = 'SELECT * FROM lost_items WHERE id=' + id
+    x = c.execute(a)
+    return x
 
 # add_item("joyce", "boot", "accessory", 0, 40.76, -73.99)
 # add_item("joyce", "yaya", "accessory", 0, 40.76, -73.99)

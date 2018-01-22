@@ -171,3 +171,6 @@ finished form for reporting found items. adds found item to two databases: one t
 dashaS -- 2018-01-21 01:59
 worked on rereporting losting items through form as well as connecting lost to possible found items for a match.
 
+joyceW -- 2018-01-21 21:50
+got markers to working, but not clicking yet
+

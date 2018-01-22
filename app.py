@@ -119,9 +119,10 @@ def find():
 @app.route('/lost_postings', methods=['GET', 'POST'])
 def list_lost_items():
     list = database.item_listings()
+    unique_locations = database.find_unique_locations()
     #you are still allowed to see postings without logging in
     if not session.get('username'):
-        return render_template("lost_postings.html", loggedIn=False, api_key=map_api_key, listings=list)
+        return render_template("lost_postings.html", loggedIn=False, api_key=map_api_key, listings=list, unique=unique_locations)
     else:
         return render_template("lost_postings.html", loggedIn=True, api_key=map_api_key, listings=list)
 
