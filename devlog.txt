@@ -180,3 +180,6 @@ single postings page set, needs to connect with mailpy api
 brianL -- 2018-01-22 11:49
 combined mail with the software!!!
 
+dariaS -- 2018-01-22 15:51
+Fixed lost and found items to increment properly. Coded function to link lost items to possible found items. Will need to connect to frontend.
+
