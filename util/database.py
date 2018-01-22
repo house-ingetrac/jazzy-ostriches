@@ -57,7 +57,7 @@ def last_lost_id():
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     last_id = 'SELECT * FROM lost_items WHERE id=(SELECT max(id) FROM lost_items)'
-    if not isinstance(last_id, int):
+    if not isinstance(last_id, (int, long, float, complex)):
         return 0
     x = c.execute(last_id)
     for bar in x:
@@ -67,11 +67,29 @@ def last_found_id():
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     last_id = 'SELECT * FROM found_items WHERE id=(SELECT max(id) FROM found_items)'
-    if not isinstance(last_id, int):
+    if not isinstance(last_id, (int, long, float, complex)):
         return 0
     x = c.execute(last_id)
     for bar in x:
         return bar[0]
+
+
+#possible item match list
+def find_match(lost_item, category, location, description):
+    db = sqlite3.connect("data/lost_and_found.db")
+    c = db.cursor()
+    a = 'SELECT * from found_items'
+    x = c.execute(a)
+    possible_matches = {} 
+    for bar in x:
+        int similarity = 0
+        if(lost_item == bar[0]):
+            similarity += 2
+        if(category ==
+            #INSERT LINE TO PRINT ITEMS BY NUMBER
+    db.commit()
+    db.close()
+    
 
 #add lost item to database
 def add_lost_item(user, item, category, date, location, description):
@@ -115,7 +133,7 @@ def add_found_item(user, item, category, date, location, description):
     db.commit()
     db.close()
 
-add_found_item("joyce", "house", "accessory", "06/08/2018", "Times Square", "I couldn't find the owner so I broke in. Lmk if its yours. Yellow with a wooden awning. 3 bedroom.")
+#add_found_item("joyce", "house", "accessory", "06/08/2018", "Times Square", "I couldn't find the owner so I broke in. Lmk if its yours. Yellow with a wooden awning. 3 bedroom.")
 
 
 def item_listings():
