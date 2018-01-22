@@ -163,7 +163,12 @@ def get_item(id):
     c = db.cursor()
     a = 'SELECT * FROM lost_items WHERE id=' + id
     x = c.execute(a)
-    return x
+    item = []
+    for y in x:
+        for info in y:
+            item.append(info)
+    print(item)
+    return item
 
 # add_item("joyce", "boot", "accessory", 0, 40.76, -73.99)
 # add_item("joyce", "yaya", "accessory", 0, 40.76, -73.99)

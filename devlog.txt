@@ -174,3 +174,6 @@ worked on rereporting losting items through form as well as connecting lost to p
 joyceW -- 2018-01-21 21:50
 got markers to working, but not clicking yet
 
+joyceW -- 2018-01-21 22:43
+single postings page set, needs to connect with mailpy api
+

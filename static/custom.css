@@ -188,3 +188,8 @@ a {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* Single posting format */
+.single_post {
+  padding-left: 15px;
+}

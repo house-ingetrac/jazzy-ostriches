@@ -136,11 +136,12 @@ def list_found_items():
 
 @app.route('/single_posting', methods=['GET', 'POST'])
 def single_post():
-    #retrieves item post id and sends info back to computer about item
+    item = database.get_item(request.form.get('item_id'))
     if not session.get('username'):
-        return render_template("single_posting.html", loggedIn=False, item="")
+        return render_template("single_posting.html", loggedIn=False, item=item)
     else:
-        return render_template("single_posting.html", loggedIn=True, item="")
+        print(item)
+        return render_template("single_posting.html", loggedIn=True, item=item)
 
 if __name__ == "__main__":
     app.debug = True
