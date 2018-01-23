@@ -1,22 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-<br><h1>Here are some items that may possibly be yours:</h1><br>
-{% for listing in listings %}
-  <h3>{{listing['item_name']}}</h3><br>
-  Category: {{listing['item_cat']}}<br>
-  Date Found: {{listing['item_date']}}<br>
-  Location: {{listing['item_location']}}<br>
-  Description:
-    {% if listing['item_desc'] == '' %} N/A
-    {% else %} {{listing['item_desc']}} {% endif %} <br>
-  <form action='/single_posting' method="POST">
-    <input type="submit" value="See More" name="more" class="btn">
-  </form>
-  <hr>
-{% endfor %}
-<br>Not what you were looking for? We can add your post to the lost listings: <br>
-<form action="/lost_postings" method="POST">
+<br>
+{% if matches|length == 0 %}
+  <h1>We could not find a match.</h1><br>
+  Would you still like to add the post to the {{lost_found}} listings?<br>
+{% else %}
+  <h1>Here are some items that may possibly be yours:</h1><br>
+  {% for listing in matches %}
+    <h3>{{listing['item_name']}}</h3><br>
+    Category: {{listing['item_cat']}}<br>
+    Date Found: {{listing['item_date']}}<br>
+    Location: {{listing['item_location']}}<br>
+    Description:
+      {% if listing['item_desc'] == '' %} N/A
+      {% else %} {{listing['item_desc']}} {% endif %} <br>
+    <form action='/single_posting' method="POST">
+      <input type="submit" value="See More" name="more" class="btn">
+      <input type="hidden" value="{{item['item_id']}}" name="id">
+      <input type="hidden" name="lost_found" value="{{lost_found}}">
+    </form>
+    <hr>
+  {% endfor %}
+  <br>Not what you were looking for? We can add your post to the {{lost_found}} listings: <br>
+{% endif %}
+<form action="/{{lost_found}}_postings" method="POST">
   <input type="submit" value="Add" name="add_post" class="btn">
 </form>
 {% endblock %}

@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Format: [id, item, description, category, account_id, location, lat, long, date]  -->
-<h1>Your item has been updated</h1>
+<div class="overflow">
+  <!-- Format: [id, item, description, category, account_id, location, lat, long, date]  -->
+  <h1>Your item has been updated</h1>
+  <form action="/profile">
+    <input class="btn" value="Return">
+  </form>
+</div>
 {% endblock %}
