@@ -27,6 +27,15 @@ def start():
     #must add introductory page to explain what everything is
     return render_template('home.html', title="Welcome", loggedIn=False, api_key=map_api_key)
 
+
+#search bar fxn
+
+@app.route("/search")
+def search():
+    if session.get('username'):
+        #must add more once home.html has more details
+        return render_template('home.html')
+
 # Login Authentication
 @app.route('/login', methods=['GET', 'POST'])
 def authentication():

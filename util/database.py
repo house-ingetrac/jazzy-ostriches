@@ -221,7 +221,6 @@ def add_found_item(user, item, category, date, location, description):
 
 #add_found_item("joyce", "house", "accessory", "06/08/2018", "Times Square", "I couldn't find the owner so I broke in. Lmk if its yours. Yellow with a wooden awning. 3 bedroom.")
 
-
 def item_listings(lost_found):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
