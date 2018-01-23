@@ -90,7 +90,7 @@ def last_found_id():
     for bar in x:
         return bar[0]
 
-print last_found_id()
+#print last_found_id()
 
 #possible item match list for lost item
 def find_lost_match(lost_item, category, location, description):
@@ -240,6 +240,26 @@ def item_listings(lost_found):
     db.commit()
     db.close()
     return item_list
+
+def lost_filter_search(keyword,category,date):
+    lost_items = item_listings("lost")
+    result = []
+    #print lost_items
+    if keyword != "":
+        for things in lost_items:
+            print 1
+            if (keyword in things["item_name"]):
+                result.append(things)
+    if category != "":
+        result2 = []
+        for things in result:
+            if(category in things["item_cat"]):
+                result2.append(things)
+        result = result2
+    ###write date sorting part
+    return result
+
+print lost_filter_search("bag","bags", "no")
 
 def find_unique_locations(lost_found):
     db = sqlite3.connect("data/lost_and_found.db")
