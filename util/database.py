@@ -245,8 +245,8 @@ def find_unique_locations(lost_found):
         if (loc not in locations):
             locations.append(loc)
     return locations
-  
-  def get_item(id, lost_found):
+
+def get_item(id, lost_found):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     a = 'SELECT * FROM ' + lost_found + '_items WHERE id=' + str(id)
@@ -289,7 +289,7 @@ def user_items(user, lost_found):
 
 #print user_items("dashak", "found")
 
-
+'''
 # execute this file to create the initial database
 if __name__ == '__main__':
     # initialize database

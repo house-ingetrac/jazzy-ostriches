@@ -130,7 +130,7 @@ def find():
     if "item" in r and "category" in r and "location" in r and "date" in r and "description" in r:
         database.add_lost_item(username, r["item"],r["category"], r["date"], r["location"], r["description"])
         possible_matches = database.find_lost_match(r["item"], r["category"], r["location"], r["description"])
-        return render_template("maybe_postings.html", loggedIn=True, matches = possible_matches, found=False, lost_found="lost") 
+        return render_template("maybe_postings.html", loggedIn=True, matches = possible_matches, found=False, lost_found="lost")
         flash("Your item was not reported properly. Please try again.")
         return redirect(url_for('list_lost_items'))
 
@@ -203,26 +203,34 @@ def edit():
 
 @app.route('/editor', methods=["GET","POST"])
 def editor():
-    schema = ["item_id","item","description","category","location","date"]
-    lostness = 1
-    if request.args.get('lost_found') == 'lost':
-        lostness = 0
-        print "ITS LOST!"
-    itemid = int(request.args.get("item_id"))
-    i =1
-    dataIndices = [1,2,3,5,8]
-    print "lostness is: "+str(lostness)
-    print "itemid is: "+str(itemid)
-    for dataIndex in dataIndices:
-        print i
-        newVal = str(request.args.get(schema[i]))
-        auth.edit_item(newVal,lostness,itemid,dataIndex)
-        i+=1
-    return redirect('/edited')
+    if not session.get('username'):
+        flash('Looks like you need to login!')
+        return redirect(url_for('authentication'))
+    else:
+        schema = ["item_id","item","description","category","location","date"]
+        lostness = 1
+        if request.args.get('lost_found') == 'lost':
+            lostness = 0
+            print "ITS LOST!"
+        itemid = int(request.args.get("item_id"))
+        i =1
+        dataIndices = [1,2,3,5,8]
+        print "lostness is: "+str(lostness)
+        print "itemid is: "+str(itemid)
+        for dataIndex in dataIndices:
+            print i
+            newVal = str(request.args.get(schema[i]))
+            auth.edit_item(newVal,lostness,itemid,dataIndex)
+            i+=1
+        return redirect(url_for('edited'))
 
 @app.route('/edited',methods=["GET","POST"])
 def edited():
-    return render_template("edited.html")
+    if not session.get('username'):
+        flash('Looks like you need to login!')
+        return redirect(url_for('authentication'))
+    else:
+        return render_template("edited.html", loggedIn=True)
 
 if __name__ == "__main__":
     app.debug = True
