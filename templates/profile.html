@@ -10,14 +10,14 @@
   {% for item in lost_items %}
     <div class="profile-post">
       <b><h3>{{item[1]}}</h3></b><br>
-      <font size="14"><i>Category:</i> {{item[3]}}<br>
+      <i>Category:</i> {{item[3]}}<br>
       <i>Date:</i> {{item[8]}}<br>
       <i>Location: </i>{{item[5]}} <br>
       <i>Description:</i>
         <!-- desciption is optional-->
         {% if item[2] == "" %} N/A<br>
         {% else %} {{item[2]}}<br>
-        {% endif %}<br></font>
+        {% endif %}<br>
       <form action="/edit" method="POST">
         <input type="submit" class="btn" name="edit" value="Edit">
         <input type="submit" class="btn" name="delete" value="Delete">
@@ -32,7 +32,6 @@
   {% for item in found_items %}
     <div class="profile-post">
       <h3>{{item[1]}}</h3></b><br>
-      <font size="14">
       <i>Category:</i> {{item[3]}}<br>
       <i>Date:</i> {{item[8]}}<br>
       <i>Location:</i> {{item[5]}} <br>
@@ -41,7 +40,6 @@
         {% if item[2] == "" %} N/A<br>
         {% else %} {{item[2]}}<br>
         {% endif %}<br><br>
-      </font>
       <form action="/edit" method="POST">
         <input type="submit" class="btn" name="edit" value="Edit">
         <input type="submit" class="btn" name="delete" value="Delete">

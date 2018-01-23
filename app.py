@@ -73,6 +73,7 @@ def profile():
         username = session.get('username')
         lost = database.user_items(username, 'lost')
         found = database.user_items(username, 'found')
+        print(lost)
         return render_template("profile.html", loggedIn = True, lost_items=lost, found_items=found, user=username)
 
 # Logging out
