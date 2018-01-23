@@ -201,3 +201,5 @@ People who report lost/found items will now be matched to similar postings to op
 brianL -- 2018-01-23 14:27
 edit system now working
 
+alessandroC -- 2018-01-23 14:33
+added more info/instructions to home
