@@ -43,14 +43,14 @@ def getUserID(username):
 def sendMail(selfUser, itemID, itemLostOrFound):
 	API_SECRET = getKey(0)
 	API_KEY = getKey(1)
-
+	print "Running"
 	#print(API_KEY)
 	#print(API_SECRET)
 
 	mailjet = Client(auth=(API_KEY, API_SECRET), version='v3')
 	sender = getUserData(selfUser)
 	item = getItemData(itemID,itemLostOrFound)
-	receiver = getUserData(item["itemOwner"])
+	owner = getUserData(item["itemOwner"])
 	data = {
 	    'FromEmail': "bleung@stuy.edu",
 	    'FromName': 'Lost In New York - %s'%(str(sender["username"])),
@@ -59,11 +59,11 @@ def sendMail(selfUser, itemID, itemLostOrFound):
 	    'MJ-TemplateLanguage': 'true',
 	    'Recipients': [
     	{
-    		'Email':str(receiver["email"]),
+    		'Email':str(owner["email"]),
     		'Vars':
     		{
-    			"recvUser": str(receiver["username"]),
-    			"recvEmail": str(sender["email"]),
+    			"recvUser": str(owner["username"]),
+    			"recvEmail": str(owner["email"]),
     			"item": str(item["itemName"]),
     			"sendUser": str(sender["username"])
     		}
@@ -140,6 +140,6 @@ def getUserData(userID):
 
 #print getUserData(1)
 #print getItemData(1,0)
-#sendMail(4,2,0)
+#sendMail(4,1,0)
 #getUserID("brian")
 #sendVerificationEmail("Mank@bxscience.edu")
