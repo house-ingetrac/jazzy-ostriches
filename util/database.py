@@ -172,8 +172,11 @@ def add_lost_item(user, item, category, date, location, description):
     x = c.execute(a)
     for bar in x:
         if(user == bar[0]):
-            wow = bar[1]
-            wow+= "," + str(item_id)
+            if bar[1] is None:
+                wow = str(item_id)
+            else:
+                wow = bar[1]
+                wow+= "," + str(item_id)
           #  if wow == "":
           #      wow = str(item_id)
           #  else:
@@ -194,10 +197,13 @@ def add_found_item(user, item, category, date, location, description):
     x = c.execute(a)
     for bar in x:
         if(user == bar[0]):
-            wow = bar[1]
+            if bar[1] is None:
+                wow = str(item_id)
+            else:
+                wow = bar[1]
            # if not isinstance(wow, str):
               #  wow = str(item_id)
-            wow += "," + str(item_id)
+                wow += "," + str(item_id)
             c.execute("UPDATE users SET l_found='" + wow + "' WHERE username = '" + user + "'")
     db.commit()
     db.close()
@@ -246,7 +252,7 @@ def find_unique_locations(lost_found):
             locations.append(loc)
     return locations
   
-  def get_item(id, lost_found):
+def get_item(id, lost_found):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     a = 'SELECT * FROM ' + lost_found + '_items WHERE id=' + str(id)
@@ -302,4 +308,4 @@ if __name__ == '__main__':
     #table with postings for found items
     c.execute("CREATE TABLE found_items (id INT, item TEXT, description TEXT, category TEXT, account_id INT, lat FLOAT, long FLOAT);")
     db.commit()
-    db.close()'''
+    db.close()
