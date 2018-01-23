@@ -44,7 +44,7 @@ def addUser(user, password, email):
 
 def get_latitude(location):
     loc = location.replace(" ", "+")
-    uResp = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json?address=' + loc + '&key=' + 'AIzaSyBFz5VEChIVzmNMAc9HT9p8o9diCuN3Gig') #map_api_key
+    uResp = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json?address=' + loc + '&key=' + map_api_key)
     blah = uResp.read()
     #print blah
     dict1 = json.loads(blah)
