@@ -11,6 +11,93 @@
   <p>This is your one stop website to finding lost items and reporting found items.
     From cats to wallets to keys, use this website to find what you're looking for.
     Don't get lost in the big ol' apple...</p>
+  <br>
+  <p>Lost in New York is a service that allows you to connect with other New Yorkers and find your lost itmes. If you have found an item and would like to let other users know, or if you are looking for an item of yours that you have lost, you must be logged in first. <a style="color:ff6666; "href="/signup">Create an account</a> (super easy and quick!) if you don't already have one, and visit the respective pages!</p>
+    <p>Once there, you can contact other users directly to get your stuff back. Welcome to the foremost lost and found community of NYC!</p>
+  <center>
+    <!--MUST CHECK FOR CORRECT ROUTE-->
+    <a class="btn" href="/lost">LOST</a> |
+    <a class="btn" href="/found">FOUND</a>
+  </center>
+  <br><br><br>
+</div>
+<script>
+  // var infowindow = new google.maps.InfoWindow();
+  // var listings = "{{listings}}"; //list of items; each item has a dictionary
+  // //finds number of Markers
+  // var all_locations = [];
+  // for each (listing in listings){
+  //   console.log(listing)
+  //  all_locations.push(list[0])
+  // };
+  // var markers = all_locations.filter(onlyUnique); //filter to find all unique all_locations
+  // console.log("markers");
+
+  //helper function: adds postings to each marker on click
+  // function add_postings(marker, i, items_list) {
+  //   var contentString = "";
+  //   //adds first 5 posts
+  //   for(i = 0; i < 5; i++){
+  //     try{
+  //       contentString += "<form action='/posting'><input type='hidden' name='item_id' value='"+items_list[2]+"'><input type='submit' value='"+items_list[1] + "'></form>";
+  //     };
+  //     catch(e){
+  //       break;
+  //     };
+  //   };
+  //   //adds See More button
+  //   contentString += "<br>" + "<form action='/listings'><input type='submit' value='See More'><input type='hidden' name='location' value='"+items_list[0]+"'></form>";
+  //   infowindow.setContent(contentString);
+  //   infowindow.open(map, marker);
+  // };
+
+  function initialize() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 13,
+      center: new google.maps.LatLng(40.76, -73.99), //center for times square
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    var marker = new google.maps.Marker({
+         position: new google.maps.LatLng(40.76, -73.99),
+         label: "15",
+         map: map
+    });
+
+    //add markers to map
+    // for(loc = 0; loc < markers.length; loc++){
+    //   //creates new array of items at location
+    //   var items = [];
+    //   for each (listing in listings){
+    //     if (markers[loc] == listing[0]){
+    //       items.push(listing)
+    //     };
+    //   };
+    //
+    //   var marker = new google.maps.Marker({
+    //     position: new google.maps.LatLng(markers[loc][0], markers[loc][1]),
+    //     label: items.length.toString(),
+    //     map: map
+    //   });
+    //   google.maps.event.addListener(marker, 'click', add_postings(marker, i, items));
+    // };
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{% endblock %}
+{% extends "base.html" %}
+
+{% block head %}
+<script src="https://maps.googleapis.com/maps/api/js?key={{api_key}}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="map"></div>
+<div class="container">
+  <h1 class="my-4">Welcome to Lost in New York</h1>
+  <p>This is your one stop website to finding lost items and reporting found items.
+    From cats to wallets to keys, use this website to find what you're looking for.
+    Don't get lost in the big ol' apple...</p>
   <center>
     <!--MUST CHECK FOR CORRECT ROUTE-->
     <a class="btn" href="/lost">LOST</a> |
