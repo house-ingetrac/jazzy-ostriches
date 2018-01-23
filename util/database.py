@@ -53,7 +53,7 @@ def get_latitude(location):
 
 def get_longitude(location):
     loc = location.replace(" ", "+")
-    uResp = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json?address=' + loc + '&key=' + 'AIzaSyBFz5VEChIVzmNMAc9HT9p8o9diCuN3Gig') #map_api_key
+    uResp = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json?address=' + loc + '&key=' + map_api_key)
     blah = uResp.read()
     #print blah
     dict1 = json.loads(blah)
@@ -92,24 +92,30 @@ def user_items(user, lost_found):
 def last_lost_id():
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
+    num_row = "SELECT Count(*) FROM lost_items"
+    y = c.execute(num_row)
+    for bar in y:
+        if bar[0] == 0:
+            return 0
     last_id = 'SELECT * FROM lost_items WHERE id=(SELECT max(id) FROM lost_items)'
     x = c.execute(last_id)
-    if (x is None):
-        return 0
     for bar in x:
         return bar[0]
 
 def last_found_id():
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
+    num_row = "SELECT Count(*) FROM found_items"
+    y = c.execute(num_row)
+    for bar in y:
+        if bar[0] == 0:
+            return 0
     last_id = 'SELECT * FROM found_items WHERE id=(SELECT max(id) FROM found_items)'
-   # if not isinstance(last_id, (int, long, float, complex)):
-     #   return 0
     x = c.execute(last_id)
-    if (x is None):
-        return 0
     for bar in x:
         return bar[0]
+
+print last_found_id()
 
 #possible item match list for lost item
 def find_lost_match(lost_item, category, location, description):
