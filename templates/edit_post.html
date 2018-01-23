@@ -2,10 +2,10 @@
 
 {% block content %}
 <!-- Format: [id, item, description, category, account_id, location, lat, long, date]  -->
-<div class="overflow" method="POST">
+<div class="overflow">
   <center><br>
   <h1> Create Found Posting </h1><br>
-  <form action="/editor" method="POST">
+  <form action="/editor" method="GET">
     Item: <input class="input" type="text" name="item" value="{{item[1]}}" required><br><br>
     Category:
       <select name="category" class="filterdrop" style="width:220px;" required>
@@ -19,8 +19,9 @@
     Location Found: <input type="text" name="location" class="input" style="width:190px;" value="{{item[5]}}" required><br><br>
     Date Found: <input type="date" name="date" class="input" style="width:215px;" value="{{item[8]}}" required><br><br>
     Description: <textarea name="description" rows:"10" cols="28" id="description" value="{{item[2]}}">{{item[2]}}</textarea><br><br>
-    <input type="submit" class="btn" value="Save" name="save">
     <input type="hidden" name="item_id" value="{{item[0]}}">
+    <input type="hidden" type="text" name="lostOrFoundVal" value="{{lostOrFound}}">
+    <input type="submit" class="btn" value="Save" name="save">
   </form>
 </center>
 </div>

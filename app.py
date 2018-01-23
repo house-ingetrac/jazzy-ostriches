@@ -209,17 +209,20 @@ def editor():
     else:
         schema = ["item_id","item","description","category","location","date"]
         lostness = 1
-        if request.form.get('lost_found') == 'lost':
+        print request.args.get("lostOrFoundVal")
+        if request.args.get("lostOrFoundVal") == 'lost':
             lostness = 0
             print "ITS LOST!"
-        itemid = int(request.form.get("item_id"))
+        print("itemid: "+request.args.get("item_id"))
+        itemid = int(request.args.get("item_id"))
         i =1
         dataIndices = [1,2,3,5,8]
         print "lostness is: "+str(lostness)
         print "itemid is: "+str(itemid)
         for dataIndex in dataIndices:
             print i
-            newVal = str(request.form.get(schema[i]))
+            print "lostness: "+str(lostness)
+            newVal = str(request.args.get(schema[i]))
             auth.edit_item(newVal,lostness,itemid,dataIndex)
             i+=1
         return redirect(url_for('edited'))
