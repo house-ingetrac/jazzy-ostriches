@@ -195,3 +195,6 @@ added fxn for found items to be matched
 brianL -- 2018-01-23 11:03
 fixed bug in mailplane, should be perfectly fine now
 
+dariaS -- 2018-01-23 11:45
+People who report lost/found items will now be matched to similar postings to optimize experience. Latitude and longitude are now generated from entered address.
+
