@@ -83,8 +83,8 @@ def user_items(user, lost_found):
                 posts = list_of_postings.split(",")
     for post in posts:
         items.append(get_item(int(post), lost_found))
-    db.commit()
-    db.close()
+    #db.commit()
+    #db.close()
     return items
 
 ##helper fxn for last id
@@ -271,7 +271,7 @@ def get_item(id, lost_found):
     for y in x:
         for info in y:
             item.append(info)
-    print(item)
+    db.close()
     return item
 
 # add_item("joyce", "boot", "accessory", 0, 40.76, -73.99)

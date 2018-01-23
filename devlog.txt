@@ -198,3 +198,6 @@ fixed bug in mailplane, should be perfectly fine now
 dariaS -- 2018-01-23 11:45
 People who report lost/found items will now be matched to similar postings to optimize experience. Latitude and longitude are now generated from entered address.
 
+brianL -- 2018-01-23 14:27
+edit system now working
+

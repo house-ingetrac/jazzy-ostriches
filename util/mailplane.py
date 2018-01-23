@@ -33,6 +33,7 @@ def getUserID(username):
 	for userArr in userRawData:
 		retval = userArr[0]
 	print retval
+	dab.close()
 	return retval
 
 
@@ -99,6 +100,7 @@ def getItemData(itemID,lostOrFound):
 		itemDict["itemName"]=itemData[1]
 		itemDict["itemDesc"]=itemData[2]
 		itemDict["itemOwner"]=itemData[4]
+	dab.close()
 	return itemDict
 
 
@@ -118,6 +120,7 @@ def getUserData(userID):
 	for userData in users:
 		userDict["username"] = userData[1]
 		userDict["email"] = userData[2]
+	dab.close()
 	return userDict
 
 #TESTING FUNCTIONS IGNORE

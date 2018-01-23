@@ -56,7 +56,7 @@ def edit_item(newValue,lostOrFound,itemID,dataIndex):
         cmd = 'UPDATE %s SET %s = %s WHERE id = %i'%(lostOrFoundtab[lostOrFound],schema[dataIndex],newValue,itemID)
     else:
         cmd = 'UPDATE %s SET %s = "%s" WHERE id = %i'%(lostOrFoundtab[lostOrFound],schema[dataIndex],newValue,itemID)
-    db_name = "../data/lost_and_found.db"
+    db_name = "data/lost_and_found.db"
     dab = sqlite3.connect(db_name)
     c = dab.cursor()
     users = c.execute(cmd)
