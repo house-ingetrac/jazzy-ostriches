@@ -53,7 +53,7 @@ def get_latitude(location):
 
 def get_longitude(location):
     loc = location.replace(" ", "+")
-    uResp = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json?address=' + loc + '&key=' + 'AIzaSyBFz5VEChIVzmNMAc9HT9p8o9diCuN3Gig') #map_api_key
+    uResp = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json?address=' + loc + '&key=' + map_api_key)
     blah = uResp.read()
     #print blah
     dict1 = json.loads(blah)
@@ -92,9 +92,12 @@ def user_items(user, lost_found):
 def last_lost_id():
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
+    num_row = "SELECT Count(*) FROM lost_items"
+    y = c.execute(num_row)
+    for bar in y:
+        if bar[0] == 0:
+            return 0
     last_id = 'SELECT * FROM lost_items WHERE id=(SELECT max(id) FROM lost_items)'
-    if not isinstance(last_id, (int, long, float, complex)):
-        return 0
     x = c.execute(last_id)
     for bar in x:
         return bar[0]
@@ -102,12 +105,17 @@ def last_lost_id():
 def last_found_id():
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
+    num_row = "SELECT Count(*) FROM found_items"
+    y = c.execute(num_row)
+    for bar in y:
+        if bar[0] == 0:
+            return 0
     last_id = 'SELECT * FROM found_items WHERE id=(SELECT max(id) FROM found_items)'
-   # if not isinstance(last_id, (int, long, float, complex)):
-     #   return 0
     x = c.execute(last_id)
     for bar in x:
         return bar[0]
+
+print last_found_id()
 
 #possible item match list for lost item
 def find_lost_match(lost_item, category, location, description):
@@ -182,7 +190,7 @@ def add_lost_item(user, item, category, date, location, description):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     item_id = last_lost_id() + 1
-    lost_items_vals = [item_id, item, description, category, user, location, get_latitude(location), get_longitude(location), date]
+    lost_items_vals = [item_id, item, description, category, user, location, get_latitude(location + " NY"), get_longitude(location + " NY"), date]
     c.execute("INSERT INTO lost_items (id, item, description, category, account_id, location, lat, long, date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", lost_items_vals)
     ##appending lost item
     a = 'SELECT username, l_lost FROM users'
@@ -204,7 +212,7 @@ def add_found_item(user, item, category, date, location, description):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     item_id = last_found_id() + 1
-    found_items_vals = [item_id, item, description, category, user, location, get_latitude(location), get_longitude(location), date]
+    found_items_vals = [item_id, item, description, category, user, location, get_latitude(location+" NY"), get_longitude(location + " NY"), date]
     c.execute("INSERT INTO found_items (id, item, description, category, account_id, location, lat, long, date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", found_items_vals)
     ##appending lost item
     a = 'SELECT username, l_found FROM users'
@@ -221,7 +229,6 @@ def add_found_item(user, item, category, date, location, description):
 
 #add_found_item("joyce", "house", "accessory", "06/08/2018", "Times Square", "I couldn't find the owner so I broke in. Lmk if its yours. Yellow with a wooden awning. 3 bedroom.")
 
-
 def item_listings(lost_found):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
@@ -232,6 +239,7 @@ def item_listings(lost_found):
         item_id = bar[0]
         item_name = bar[1]
         item_desc = bar[2]
+        item_cat = bar[3]
         item_lat = bar[6]
         item_long = bar[7]
         item_location = bar[5]
@@ -239,6 +247,7 @@ def item_listings(lost_found):
         ##add vars for location string and date
         item = {}
         item['item_id'] = item_id
+        item['item_cat'] = item_cat
         item['item_name'] = item_name
         item['item_desc'] = item_desc
         item['item_lat'] = item_lat
