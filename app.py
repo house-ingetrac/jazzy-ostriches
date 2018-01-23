@@ -209,7 +209,8 @@ def editor():
     else:
         schema = ["item_id","item","description","category","location","date"]
         lostness = 1
-        if request.args.get('lost_found') == 'lost':
+        print request.args.get("lostOrFoundVal")
+        if request.args.get("lostOrFoundVal") == 'lost':
             lostness = 0
             print "ITS LOST!"
         print("itemid: "+request.args.get("item_id"))
