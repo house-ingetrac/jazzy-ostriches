@@ -192,9 +192,11 @@ def edit():
         if request.form.get('delete') == "Delete":
             item = int(request.form.get('id'))
             lost_found = request.form.get('lost_found')
+            print item
+            print lost_found
             schema = ["item_id","item","description","category","location","date"]
             lostness = 1
-            if request.args.get("lostOrFoundVal") == 'lost':
+            if lost_found == 'lost':
                 lostness = 0
             auth.delete_item(lostness,item)
             return redirect(url_for('profile'))
@@ -240,7 +242,10 @@ def edited():
         return redirect(url_for('authentication'))
     else:
         return render_template("edited.html", loggedIn=True)
-
+'''
+@app.route('/deletion',methods=["GET","POST"])
+def deletion():
+    '''
 
 if __name__ == "__main__":
     app.debug = True

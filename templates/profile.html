@@ -19,10 +19,10 @@
         {% else %} {{item[2]}}<br>
         {% endif %}<br>
       <form action="/edit" method="POST">
-        <input type="submit" class="btn" name="edit" value="Edit">
-        <input type="submit" class="btn" name="delete" value="Delete">
         <input type="hidden" name="id" value="{{item[0]}}">
         <input type="hidden" name="lost_found" value="lost">
+        <input type="submit" class="btn" name="edit" value="Edit">
+        <input type="submit" class="btn" name="delete" value="Delete">
       </form>
     </div>
     <br>
@@ -41,10 +41,10 @@
         {% else %} {{item[2]}}<br>
         {% endif %}<br><br>
       <form action="/edit" method="POST">
-        <input type="submit" class="btn" name="edit" value="Edit">
-        <input type="submit" class="btn" name="delete" value="Delete">
         <input type="hidden" name="id" value="{{item[0]}}">
         <input type="hidden" name="lost_found" value="found">
+        <input type="submit" class="btn" name="edit" value="Edit">
+        <input type="submit" class="btn" name="delete" value="Delete">
       </form>
     </div>
   {% endfor %}
