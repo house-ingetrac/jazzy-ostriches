@@ -93,9 +93,9 @@ def last_lost_id():
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     last_id = 'SELECT * FROM lost_items WHERE id=(SELECT max(id) FROM lost_items)'
-    if not isinstance(last_id, (int, long, float, complex)):
-        return 0
     x = c.execute(last_id)
+    if (x is None):
+        return 0
     for bar in x:
         return bar[0]
 
@@ -106,6 +106,8 @@ def last_found_id():
    # if not isinstance(last_id, (int, long, float, complex)):
      #   return 0
     x = c.execute(last_id)
+    if (x is None):
+        return 0
     for bar in x:
         return bar[0]
 
