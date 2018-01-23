@@ -1,20 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="/create" method="POST">
-  Item: <input type="text" name="item" required><br>
-  Category:
-    <select name="category">
-      <option value="bags">Bags</option>
-      <option value="wallets">Wallets</option>
-      <option value="documents">Documents</option>
-      <option value="accessories">Accessories</option>
-      <option value="electronics">Electronics</option>
-      <option value="other">Other</option>
-    </select><br>
-  Location Found: <input type="text" name="location" required><br>
-  Date Found: <input type="date" name="date" required<br>
-  Description: <input type="text" name="description"><br>
-  <input type="submit" value="Post" name="created">
-</form>
+<div class="overflow">
+  <center><br>
+  <h1> Create Found Posting </h1><br>
+  <form action="/create" method="POST">
+    Item: <input class="input" type="text" name="item" required><br><br>
+    Category:
+      <select name="category" class="filterdrop" style="width:220px;">
+        <option value="bags">Bags</option>
+        <option value="wallets">Wallets</option>
+        <option value="documents">Documents</option>
+        <option value="accessories">Accessories</option>
+        <option value="electronics">Electronics</option>
+        <option value="other">Other</option>
+      </select><br><br>
+    Location Found: <input type="text" name="location" class="input" style="width:190px;" required><br><br>
+    Date Found: <input type="date" name="date" class="input" style="width:215px;" required><br><br>
+    Description: <textarea name="description" rows:"10" cols="28" id="description"></textarea><br><br>
+    <input type="submit" class="btn" value="Post" name="created">
+  </form>
+</center>
+</div>
 {% endblock content %}

@@ -64,7 +64,7 @@ def profile():
         username = session.get('username')
         lost = database.user_items(username, 'lost')
         found = database.user_items(username, 'found')
-        return render_template("profile.html", loggedIn = True, lost_posts=lost, found_posts=found, user=username)
+        return render_template("profile.html", loggedIn = True, lost_items=lost, found_items=found, user=username)
 
 # Logging out
 @app.route('/logout', methods=['GET', 'POST'])
@@ -157,10 +157,14 @@ def single_post():
 
 @app.route('/send', methods = ['GET','POST'])
 def send():
-    userID = int(mailplane.getUserID(session.get('username')))
-    itemID = int(request.args.get('item_id'))
-    mailplane.sendMail(userID,itemID,0)
-    return redirect('/sent')
+    if not session.get('username'):
+        flash('Looks like you need to login!')
+        return redirect(url_for('authentication'))
+    else:
+        userID = int(mailplane.getUserID(session.get('username')))
+        itemID = int(request.args.get('item_id'))
+        mailplane.sendMail(userID,itemID,0)
+        return redirect('/sent')
 
 @app.route('/sent', methods = ['GET','POST'])
 def sent():
@@ -169,6 +173,21 @@ def sent():
         return redirect(url_for('authentication'))
     else:
         return render_template("sent.html", loggedIn=True)
+
+@app.route('/edit', methods=["GET", "POST"])
+def edit():
+    if not session.get('username'):
+        flash('Looks like you need to login!')
+        return redirect(url_for('authentication'))
+    else:
+        if request.form.get('delete') == "Delete":
+            #function to delete post
+            return redirect(url_for('profile'))
+        else:
+            item = request.form.get('id')
+            lost_found = request.form.get('lost_found')
+            listing = database.get_item(id, lost_found)
+            return render_template("edit_post.html", listing=listing, loggedIn=True)
 
 if __name__ == "__main__":
     app.debug = True

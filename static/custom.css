@@ -145,13 +145,6 @@ a {
   border-radius: 0px 6px 6px 0px;
 }
 
-/* .add-on .input-group-btn > .btn {
-  border-left-width:0;left:-2px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  width: 30px;
-} */
-
 /*Login Popup Box */
 .modal {
   display: none; /* Hidden by default */
@@ -192,4 +185,9 @@ a {
 /* Single posting format */
 .single_post {
   padding-left: 15px;
+}
+
+#description {
+  border-radius: 6px 6px 6px 6px;
+  border-color: #d2d2d2;
 }
