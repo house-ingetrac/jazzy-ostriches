@@ -82,7 +82,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <div class="filter">
   <form action="/lost_postings" method="POST">
     <div id="search-wrapper">
-      <input type="text" placeholder="  Search" name="search" id="search-input">
+      <input type="text" placeholder="  Search" onkeyup= "myFunction()" name="search" id="search-input">
       <button type="button" id="search-btn" name="submit-search" value="searched">
         <span class="glyphicon glyphicon-search"></span>
       </button>
@@ -130,4 +130,5 @@ google.maps.event.addDomListener(window, 'load', initialize);
     </div>
   <div id="sidemap"></div>
 </div>
+
 {% endblock %}

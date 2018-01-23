@@ -2,7 +2,7 @@
 
 from flask import redirect, url_for, request, session, flash
 import database, hashlib
-
+import sqlite3
 # scrits for logging in
 
 
@@ -45,7 +45,29 @@ def signup():
         database.addUser(request.form.get('username'), hashed_pass, request.form.get('email'))
         return redirect(url_for('authentication'))
 
+#Edits item listing with a value
+def edit_item(newValue,lostOrFound,itemID,dataIndex):
+    if dataIndex == 0:
+        print("Cannot change ID")
+        return 1
+    lostOrFoundtab = ["lost_items","found_items"]
+    schema = ["id","item","description","category","account_id","location","lat","long","date"]
+    if dataIndex in [4,6,7]:
+        cmd = 'UPDATE %s SET %s = %s WHERE id = %i'%(lostOrFoundtab[lostOrFound],schema[dataIndex],newValue,itemID)
+    else:
+        cmd = 'UPDATE %s SET %s = "%s" WHERE id = %i'%(lostOrFoundtab[lostOrFound],schema[dataIndex],newValue,itemID)
+    db_name = "../data/lost_and_found.db"
+    dab = sqlite3.connect(db_name)
+    c = dab.cursor()
+    users = c.execute(cmd)
+    dab.commit()
+    dab.close()
+    print cmd
+    return 0
 
+
+'''
 if __name__ == '__main__':
     database.addUser("elmo", "goldfish")
 print database.getUsers()
+'''
