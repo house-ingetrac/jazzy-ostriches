@@ -75,23 +75,7 @@ def sendMail(selfUser, itemID, itemLostOrFound):
 	print result
 
 
-'''
-	filters = {
-    'EditMode': 'tool',
-    'Limit': '100',
-    'OwnerType': 'user'
-	}
-	result = mailjet.template.get(filters=filters)
-	#print result.status_code
-	print result.status_code
-	print result.json()
-	print sender
-	print item
-	print receiver
-'''
-
-
-#Will return a dictionary of info about a lost or found item.
+#Will return a dictionary of info about a lost and found item.
 
 #{"itemName":name of item,"itemDesc":item description, "itemOwner":ID of owner of item}
 
@@ -136,10 +120,9 @@ def getUserData(userID):
 		userDict["email"] = userData[2]
 	return userDict
 
-#TESTING
+#TESTING FUNCTIONS IGNORE
 
 #print getUserData(1)
 #print getItemData(1,0)
 #sendMail(4,1,0)
 #getUserID("brian")
-#sendVerificationEmail("Mank@bxscience.edu")
