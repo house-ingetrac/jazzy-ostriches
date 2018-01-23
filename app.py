@@ -194,8 +194,35 @@ def edit():
         else:
             item = request.form.get('id')
             lost_found = request.form.get('lost_found')
-            listing = database.get_item(id, lost_found)
-            return render_template("edit_post.html", listing=listing, loggedIn=True)
+            print lost_found
+            print "HAPPENING"
+            listing = database.get_item(item, lost_found)
+            print listing
+            print "HAPPENED"
+            return render_template("edit_post.html", listing=listing, lostOrFound=lost_found, loggedIn=True)
+
+@app.route('/editor', methods=["GET","POST"])
+def editor():
+    schema = ["item_id","item","description","category","location","date"]
+    lostness = 1
+    if request.args.get('lost_found') == 'lost':
+        lostness = 0
+        print "ITS LOST!"
+    itemid = int(request.args.get("item_id"))
+    i =1
+    dataIndices = [1,2,3,5,8]
+    print "lostness is: "+str(lostness)
+    print "itemid is: "+str(itemid)
+    for dataIndex in dataIndices:
+        print i
+        newVal = str(request.args.get(schema[i]))
+        auth.edit_item(newVal,lostness,itemid,dataIndex)
+        i+=1
+    return redirect('/edited')
+
+@app.route('/edited',methods=["GET","POST"])
+def edited():
+    return render_template("edited.html")
 
 if __name__ == "__main__":
     app.debug = True
