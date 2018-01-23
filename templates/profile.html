@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 
+{% block head %}
+<style>
+body {
+  background-color:#f2f2f2;;
+}
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="overflow" style="padding-left:20px;">
-<h1>Welcome, {{user}}!</h1><br>
+<center><h1>Welcome, {{user}}!</h1><br></center>
 
 <!--Format: [id, item, description, category, account_id, location, lat, long, date] -->
 
@@ -27,7 +35,7 @@
     </div>
     <br>
   {% endfor %}
-
+<hr>
 <h3><center>Your Found Items:</center></h3><br>
   {% for item in found_items %}
     <div class="profile-post">

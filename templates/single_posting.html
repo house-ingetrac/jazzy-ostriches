@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 
-{% block content %}
-<div class="single_post"}
+{% block head %}
+<style>
+body {
+  background-color:#f2f2f2;;
+}
+</style>
+{% endblock %}
+
+{% block content %}<br>
+<div class="profile-post"}
   <!--Format: [id, item, description, category, account_id, location, lat, long, date] -->
-  <br><h1>{{item[1]}}</h1><br>
+  <h1>{{item[1]}}</h1><br>
   <i>Category:</i> {{item[3]}}<br>
   <i>Date:</i> {{item[8]}}<br>
   <i>Location:</i> {{item[5]}}<br>

@@ -7,7 +7,7 @@
 {% block content %}
 <div id="map"></div>
 <div class="container">
-  <h1 class="my-4">Welcome to Lost in New York</h1>
+  <h1 class="my-4">Welcome to Lost in New York <img src="/static/logo-wide.png"></h1>
   <p>This is your one stop website to finding lost items and reporting found items.
     From cats to wallets to keys, use this website to find what you're looking for.
     Don't get lost in the big ol' apple...</p>
@@ -22,34 +22,40 @@
   <br><br><br>
 </div>
 <script>
-  // var infowindow = new google.maps.InfoWindow();
-  // var listings = "{{listings}}"; //list of items; each item has a dictionary
-  // //finds number of Markers
-  // var all_locations = [];
-  // for each (listing in listings){
-  //   console.log(listing)
-  //  all_locations.push(list[0])
-  // };
-  // var markers = all_locations.filter(onlyUnique); //filter to find all unique all_locations
-  // console.log("markers");
+  var infowindow = new google.maps.InfoWindow();
+  var listing = "{{lost_listings}}".slice(1, -1);
+  var listings_list = listing.split("), ");
+  var lost_list = [];
+  for (var post = 0; post < listings_list.length; post++){
+    if (post == listings_list.length-1){
+      nums = [parseFloat(listings_list[post].split(", ")[0].slice(1)), parseFloat(listings_list[post].split(", ")[1].slice(0, -1))];
+    }else{
+      nums = [parseFloat(listings_list[post].split(", ")[0].slice(1)), parseFloat(listings_list[post].split(", ")[1])];
+    }
+    lost_list.push(nums);
+  }
 
-  //helper function: adds postings to each marker on click
-  // function add_postings(marker, i, items_list) {
-  //   var contentString = "";
-  //   //adds first 5 posts
-  //   for(i = 0; i < 5; i++){
-  //     try{
-  //       contentString += "<form action='/posting'><input type='hidden' name='item_id' value='"+items_list[2]+"'><input type='submit' value='"+items_list[1] + "'></form>";
-  //     };
-  //     catch(e){
-  //       break;
-  //     };
-  //   };
-  //   //adds See More button
-  //   contentString += "<br>" + "<form action='/listings'><input type='submit' value='See More'><input type='hidden' name='location' value='"+items_list[0]+"'></form>";
-  //   infowindow.setContent(contentString);
-  //   infowindow.open(map, marker);
-  // };
+  var listing1 = "{{found_listings}}".slice(1, -1);
+  var listings_list1 = listing1.split("), ");
+  var found_list = [];
+  for (var post = 0; post < listings_list1.length; post++){
+    if (post == listings_list1.length-1){
+      nums = [parseFloat(listings_list1[post].split(", ")[0].slice(1)), parseFloat(listings_list1[post].split(", ")[1].slice(0, -1))];
+    }else{
+      nums = [parseFloat(listings_list1[post].split(", ")[0].slice(1)), parseFloat(listings_list1[post].split(", ")[1])];
+    }
+    found_list.push(nums);
+  }
+
+  function mark(lists){
+    for(var loc = 0; loc < lists.length; loc++){
+      console.log(lists[loc]);
+      var mark = new google.maps.Marker({
+        position: new google.maps.LatLng(lists[loc][0], lists[loc][1]),
+        map: map
+      });
+    };
+  }
 
   function initialize() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -57,11 +63,9 @@
       center: new google.maps.LatLng(40.76, -73.99), //center for times square
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-    var marker = new google.maps.Marker({
-         position: new google.maps.LatLng(40.76, -73.99),
-         label: "15",
-         map: map
-    });
+    mark(lost_list);
+    mark(found_list);
+  };
 
     //add markers to map
     // for(loc = 0; loc < markers.length; loc++){
