@@ -73,7 +73,6 @@ def sendMail(selfUser, itemID, itemLostOrFound):
 
 	result = mailjet.send.create(data=data)
 	print result
-	print result.json()
 
 
 '''
