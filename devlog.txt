@@ -207,3 +207,5 @@ added more info/instructions to home
 dariaS -- 2018-01-23 15:27
 Fixed bugs with user profiles and editing items. Began to work on filter bar. Can filter by category and keyword so far.
 
+joyceW -- 2018-01-23 15:30
+Looked for bugs, added more html pages

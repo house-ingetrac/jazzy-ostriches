@@ -17,23 +17,23 @@ for (var post = 0; post < listings_list.length; post++){
   console.log(lists);
 }
 
-//helper function: adds postings to each marker on click
-function add_postings(marker, i, items_list) {
-  var contentString = "";
-  //adds first 5 posts
-  for(i = 0; i < 5; i++){
-    try{
-      contentString += "<form action='/posting'><input type='hidden' name='item_id' value='"+items_list[2]+"'><input type='submit' value='"+items_list[1] + "'></form>";
-    };
-    catch(e){
-      break;
-    };
-  };
-  //adds See More button
-  contentString += "<br>" + "<form action='/listings'><input type='submit' value='See More'><input type='hidden' name='location' value='"+items_list[0]+"'></form>";
-  infowindow.setContent(contentString);
-  infowindow.open(map, marker);
-};
+// //helper function: adds postings to each marker on click
+// function add_postings(marker, i, items_list) {
+//   var contentString = "";
+//   //adds first 5 posts
+//   for(i = 0; i < 5; i++){
+//     try{
+//       contentString += "<form action='/posting'><input type='hidden' name='item_id' value='"+items_list[2]+"'><input type='submit' value='"+items_list[1] + "'></form>";
+//     };
+//     catch(e){
+//       break;
+//     };
+//   };
+//   //adds See More button
+//   contentString += "<br>" + "<form action='/listings'><input type='submit' value='See More'><input type='hidden' name='location' value='"+items_list[0]+"'></form>";
+//   infowindow.setContent(contentString);
+//   infowindow.open(map, marker);
+// };
 
 function initialize() {
   var map = new google.maps.Map(document.getElementById('sidemap'), {
@@ -41,16 +41,10 @@ function initialize() {
     center: new google.maps.LatLng(40.76, -73.99), //center for times square
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  var marker = new google.maps.Marker({
-       position: new google.maps.LatLng(40.76, -73.99),
-       label: "15",
-       map: map
-  });
   for(var loc = 0; loc < lists.length; loc++){
     console.log(lists[loc]);
     var mark = new google.maps.Marker({
       position: new google.maps.LatLng(lists[loc][0], lists[loc][1]),
-      label: "HA",
       map: map
     });
   };

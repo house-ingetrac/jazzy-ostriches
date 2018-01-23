@@ -25,7 +25,9 @@ def start():
         #must add more once home.html has more details
         return render_template('home.html', title="Welcome", loggedIn=True, api_key=map_api_key)
     #must add introductory page to explain what everything is
-    return render_template('home.html', title="Welcome", loggedIn=False, api_key=map_api_key)
+    found = database.find_unique_locations('found')
+    lost = database.find_unique_locations('lost')
+    return render_template('home.html', title="Welcome", loggedIn=False, api_key=map_api_key, lost_listings=lost, found_listings=found)
 
 
 #search bar fxn
