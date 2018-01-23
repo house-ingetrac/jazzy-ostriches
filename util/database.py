@@ -79,9 +79,8 @@ def last_found_id():
     for bar in x:
         return bar[0]
 
-
-#possible item match list
-def find_match(lost_item, category, location, description):
+#possible item match list for lost item
+def find_lost_match(lost_item, category, location, description):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     a = 'SELECT * from found_items'
@@ -113,6 +112,38 @@ def find_match(lost_item, category, location, description):
     db.commit()
     db.close()
 
+#possible item match list for found item
+def find_found_match(found_item, category, location, description):
+    db = sqlite3.connect("data/lost_and_found.db")
+    c = db.cursor()
+    a = 'SELECT * from lost_items'
+    x = c.execute(a)
+    possible_matches = []
+    for bar in x:
+        similarity = 0
+        if(found_item == bar[1]):
+            similarity += 2
+        if(description == bar[2]):
+            similarity += 20
+        if(category == bar[3]):
+            similarity += 1
+        if(location == bar[5]):
+            similarity += 2
+        if similarity > 0:
+            item = {}
+            item['item_id'] = bar[0]
+            item['item_name'] = bar[1]
+            item['item_desc'] = bar[2]
+            item['item_cat'] = bar[3]
+            item['item_acc_id'] = bar[4]
+            item['item_location'] = bar[5]
+            item['item_lat'] = bar[6]
+            item['item_long'] = bar[7]
+            item['bar_date'] = bar[8]
+            item['similarity'] = similarity
+            possible_matches.append(item)
+    db.commit()
+    db.close()
 
 #add lost item to database
 def add_lost_item(user, item, category, date, location, description):
