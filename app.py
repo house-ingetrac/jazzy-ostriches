@@ -104,19 +104,26 @@ def create():
     r = request.form
     if "item" in r and "category" in r and "location" in r and "date" in r and "description" in r:
         database.add_found_item(username, r["item"],r["category"], r["date"], r["location"], r["description"])
-        return redirect(url_for("list_found_items"))
-    flash("Your item was not reported properly. Please try again.")
-    return redirect('/found')
+        possible_matches = database.find_found_match(r["item"], r["category"], r["location"], r["description"])
+        return render_template("maybe_postings.html", loggedIn=True, matches = possible_matches) #use ajax instead, if not found, give option to add posting
+    else:
+        flash("Your item was not reported properly. Please try again.")
+        return redirect('/found')
 
+#route for creating listing for lost item
 @app.route('/find_item', methods=['GET', 'POST'])
 def find():
-    found = True #filler boolean for now, method that helps find item
-    if found:
-        return render_template("maybe_postings.html", loggedIn=True) #use ajax instead, if not found, give option to add posting
+    if not session.get('username'):
+        flash("Yikes! You need to log in first.")
+        return redirect(url_for('authentication'))
+    username = session.get('username')
+    r = request.form
+    if "item" in r and "category" in r and "location" in r and "date" in r and "description" in r:
+        database.add_lost_item(username, r["item"],r["category"], r["date"], r["location"], r["description"])
+        possible_matches = database.find_lost_match(r["item"], r["category"], r["location"], r["description"])
+        return render_template("maybe_postings.html", loggedIn=True, matches = possible_matches) #use ajax instead, if not found, give option to add posting
     else:
-        if "item" in r and "category" in r and "location" in r and "date" in r and "description" in r:
-            database.add_lost_item(username, r["item"],r["category"], r["date"], r["location"], r["description"])
-        flash("Sorry, we could not find a match. We will add your lost item to the listing.")
+        flash("Your item was not reported properly. Please try again.")
         return redirect(url_for('list_lost_items'))
 
 @app.route('/lost_postings', methods=['GET', 'POST'])

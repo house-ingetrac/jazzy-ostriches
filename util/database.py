@@ -136,6 +136,7 @@ def find_lost_match(lost_item, category, location, description):
             item['bar_date'] = bar[8]
             item['similarity'] = similarity
             possible_matches.append(item)
+            return possible_matches
     db.commit()
     db.close()
 
@@ -169,6 +170,7 @@ def find_found_match(found_item, category, location, description):
             item['bar_date'] = bar[8]
             item['similarity'] = similarity
             possible_matches.append(item)
+            return possible_matches
     db.commit()
     db.close()
 
@@ -185,10 +187,11 @@ def add_lost_item(user, item, category, date, location, description):
     for bar in x:
         if(user == bar[0]):
             wow = bar[1]
-            if wow == "":
-                wow = str(item_id)
-            else:
-                wow+= "," + str(item_id)
+            wow+= "," + str(item_id)
+          #  if wow == "":
+          #      wow = str(item_id)
+          #  else:
+
             c.execute("UPDATE users SET l_lost='" + wow + "' WHERE username = '" + user + "'")
     db.commit()
     db.close()
