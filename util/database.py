@@ -308,4 +308,4 @@ if __name__ == '__main__':
     #table with postings for found items
     c.execute("CREATE TABLE found_items (id INT, item TEXT, description TEXT, category TEXT, account_id INT, lat FLOAT, long FLOAT);")
     db.commit()
-    db.close()
+    db.close()'''
