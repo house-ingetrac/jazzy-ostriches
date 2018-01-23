@@ -199,7 +199,7 @@ def edit():
             listing = database.get_item(item, lost_found)
             print listing
             print "HAPPENED"
-            return render_template("edit_post.html", listing=listing, lostOrFound=lost_found, loggedIn=True)
+            return render_template("edit_post.html", item=listing, lostOrFound=lost_found, loggedIn=True)
 
 @app.route('/editor', methods=["GET","POST"])
 def editor():
@@ -209,17 +209,17 @@ def editor():
     else:
         schema = ["item_id","item","description","category","location","date"]
         lostness = 1
-        if request.args.get('lost_found') == 'lost':
+        if request.form.get('lost_found') == 'lost':
             lostness = 0
             print "ITS LOST!"
-        itemid = int(request.args.get("item_id"))
+        itemid = int(request.form.get("item_id"))
         i =1
         dataIndices = [1,2,3,5,8]
         print "lostness is: "+str(lostness)
         print "itemid is: "+str(itemid)
         for dataIndex in dataIndices:
             print i
-            newVal = str(request.args.get(schema[i]))
+            newVal = str(request.form.get(schema[i]))
             auth.edit_item(newVal,lostness,itemid,dataIndex)
             i+=1
         return redirect(url_for('edited'))
