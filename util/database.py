@@ -1,5 +1,8 @@
 import sqlite3
 import random
+import os
+import urllib2
+import json
 
 
 #dasha tasks:
@@ -8,7 +11,10 @@ import random
 
 #fxns available: getting users, adding users, getting user's lost items, adding lost item to user account, item listing
 
-
+#opens api key text file and retrieves keys
+f = open("keys.txt", "r")
+apis = f.read().split("\n")
+map_api_key = apis[1]
 
 # -----FUNCTIONS FOR LOGIN SYSTEM-----
 # returns a dictionary for user data {user: pass}
@@ -33,6 +39,27 @@ def addUser(user, password, email):
     db.commit()
     db.close()
 
+
+# ----- FUNCTIONS FOR LATITUDE AND LONGITUDE
+
+def get_latitude(location):
+    loc = location.replace(" ", "+")
+    uResp = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json?address=' + loc + '&key=' + 'AIzaSyBFz5VEChIVzmNMAc9HT9p8o9diCuN3Gig') #map_api_key
+    blah = uResp.read()
+    #print blah
+    dict1 = json.loads(blah)
+    return dict1["results"][0]["geometry"]["location"]["lat"]
+
+
+def get_longitude(location):
+    loc = location.replace(" ", "+")
+    uResp = urllib2.urlopen('https://maps.googleapis.com/maps/api/geocode/json?address=' + loc + '&key=' + 'AIzaSyBFz5VEChIVzmNMAc9HT9p8o9diCuN3Gig') #map_api_key
+    blah = uResp.read()
+    #print blah
+    dict1 = json.loads(blah)
+    return dict1["results"][0]["geometry"]["location"]["lng"]
+
+
 # -----FUNCTIONS FOR ITEM SYSTEM-----
 
 #print all lost items from user
@@ -50,7 +77,7 @@ def user_items(user, lost_found):
     for bar in x:
         if(user == bar[0]):
             list_of_postings = bar[1]
-            posts = lost_of_postings.split(",")
+            posts = list_of_postings.split(",")
     for post in posts:
         items.append(get_item(int(post), lost_found))
     db.commit()
@@ -150,7 +177,7 @@ def add_lost_item(user, item, category, date, location, description):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     item_id = last_lost_id() + 1
-    lost_items_vals = [item_id, item, description, category, user, location, 40.7589, 73.985, date]
+    lost_items_vals = [item_id, item, description, category, user, location, get_latitude(location), get_longitude(location), date]
     c.execute("INSERT INTO lost_items (id, item, description, category, account_id, location, lat, long, date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", lost_items_vals)
     ##appending lost item
     a = 'SELECT username, l_lost FROM users'
@@ -171,7 +198,7 @@ def add_found_item(user, item, category, date, location, description):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     item_id = last_found_id() + 1
-    found_items_vals = [item_id, item, description, category, user, location, 40.7589, 73.985, date]
+    found_items_vals = [item_id, item, description, category, user, location, get_latitude(location), get_longitude(location), date]
     c.execute("INSERT INTO found_items (id, item, description, category, account_id, location, lat, long, date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", found_items_vals)
     ##appending lost item
     a = 'SELECT username, l_found FROM users'
