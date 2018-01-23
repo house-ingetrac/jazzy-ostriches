@@ -62,7 +62,9 @@ def profile():
         return redirect(url_for('authentication'))
     else:
         username = session.get('username')
-        return render_template("profile.html", loggedIn = True)
+        lost = database.user_items(username, 'lost')
+        found = database.user_items(username, 'found')
+        return render_template("profile.html", loggedIn = True, lost_posts=lost, found_posts=found, user=username)
 
 # Logging out
 @app.route('/logout', methods=['GET', 'POST'])
@@ -89,7 +91,7 @@ def post():
         flash("Yikes! You need to log in first.")
         return redirect(url_for('authentication'))
     else:
-        return render_template('create_posting.html') #go back and add more variables
+        return render_template('create_posting.html', loggedIn=True)
 
 #route for creating listing for found item
 
@@ -119,25 +121,27 @@ def find():
 
 @app.route('/lost_postings', methods=['GET', 'POST'])
 def list_lost_items():
-    list = database.item_listings()
-    unique_locations = database.find_unique_locations()
+    list = database.item_listings('lost')
+    unique_locations = database.find_unique_locations('lost')
     #you are still allowed to see postings without logging in
     if not session.get('username'):
         return render_template("lost_postings.html", loggedIn=False, api_key=map_api_key, listings=list, unique=unique_locations)
     else:
-        return render_template("lost_postings.html", loggedIn=True, api_key=map_api_key, listings=list)
+        return render_template("lost_postings.html", loggedIn=True, api_key=map_api_key, listings=list, unique=unique_locations)
 
 @app.route('/found_postings', methods=['GET', 'POST'])
 def list_found_items():
+    list = database.item_list('found')
+    unique_locations = database.find_unique_locations('found')
     #still allowed to see postings without logging in
     if not session.get('username'):
-        return render_template("found_postings.html", loggedIn=False)
+        return render_template("found_postings.html", loggedIn=False, api_key=map_api_key, listings=list, unique=unique_locations)
     else:
-        return render_template("found_postings.html", loggedIn=True)
+        return render_template("found_postings.html", loggedIn=True, api_key=map_api_key, listings=list, unique=unique_locations)
 
 @app.route('/single_posting', methods=['GET', 'POST'])
 def single_post():
-    item = database.get_item(request.form.get('item_id'))
+    item = database.get_item(request.form.get('item_id'), 'lost')
     if not session.get('username'):
         return render_template("single_posting.html", loggedIn=False, item=item)
     else:
@@ -150,9 +154,14 @@ def send():
     itemID = int(request.args.get('item_id'))
     mailplane.sendMail(userID,itemID,0)
     return redirect('/sent')
+
 @app.route('/sent', methods = ['GET','POST'])
 def sent():
-    return render_template("sent.html", loggedIn=True)
+    if not session.get('username'):
+        flash('Looks like you need to login!')
+        return redirect(url_for('authentication'))
+    else:
+        return render_template("sent.html", loggedIn=True)
 
 if __name__ == "__main__":
     app.debug = True

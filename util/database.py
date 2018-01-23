@@ -36,20 +36,26 @@ def addUser(user, password, email):
 # -----FUNCTIONS FOR ITEM SYSTEM-----
 
 #print all lost items from user
-def lost_items(user):
+def user_items(user, lost_found):
+    if lost_found == 'lost':
+        l_f = 'l_lost'
+    else:
+        l_f = 'l_found'
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
-    a = 'SELECT username, l_lost FROM users'
+    a = 'SELECT username, ' + l_f + ' FROM users'
     x = c.execute(a)
-    lost_items = {}
+    items = []
+    #gets list of postings from users table, then retrieves item info from lost/found database
     for bar in x:
         if(user == bar[0]):
-            wow = bar[1]
-            print wow
-            eyo = wow.split(",")
-            #INSERT LINE TO PRINT ITEMS BY NUMBER
+            list_of_postings = bar[1]
+            posts = lost_of_postings.split(",")
+    for post in posts:
+        items.append(get_item(int(post), lost_found))
     db.commit()
     db.close()
+    return items
 
 ##helper fxn for last id
 
@@ -153,10 +159,10 @@ def add_found_item(user, item, category, date, location, description):
 #add_found_item("joyce", "house", "accessory", "06/08/2018", "Times Square", "I couldn't find the owner so I broke in. Lmk if its yours. Yellow with a wooden awning. 3 bedroom.")
 
 
-def item_listings():
+def item_listings(lost_found):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
-    a = 'SELECT * FROM lost_items'
+    a = 'SELECT * FROM ' + lost_found + '_items'
     x = c.execute(a)
     item_list = []
     for bar in x:
@@ -182,10 +188,10 @@ def item_listings():
     db.close()
     return item_list
 
-def find_unique_locations():
+def find_unique_locations(lost_found):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
-    a = 'SELECT lat, long FROM lost_items'
+    a = 'SELECT lat, long FROM ' + lost_found + '_items'
     x = c.execute(a)
     locations = []
     for loc in x:
@@ -193,10 +199,10 @@ def find_unique_locations():
             locations.append(loc)
     return locations
 
-def get_item(id):
+def get_item(id, lost_found):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
-    a = 'SELECT * FROM lost_items WHERE id=' + id
+    a = 'SELECT * FROM ' + lost_found + '_items WHERE id=' + id
     x = c.execute(a)
     item = []
     for y in x:

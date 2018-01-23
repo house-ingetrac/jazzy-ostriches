@@ -186,3 +186,6 @@ Fixed lost and found items to increment properly. Coded function to link lost it
 joyceW -- 2018-01-22 17:21
 created maybe postings page and formatted find lost page
 
+joyceW -- 2018-01-22 22:57
+fixed the flask to reflect accurate functions
+
