@@ -77,7 +77,10 @@ def user_items(user, lost_found):
     for bar in x:
         if(user == bar[0]):
             list_of_postings = bar[1]
-            posts = list_of_postings.split(",")
+            if(list_of_postings is None):
+                posts = []
+            else:
+                posts = list_of_postings.split(",")
     for post in posts:
         items.append(get_item(int(post), lost_found))
     db.commit()
@@ -262,7 +265,7 @@ def find_unique_locations(lost_found):
 def get_item(id, lost_found):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
-    a = 'SELECT * FROM ' + lost_found + '_items WHERE id=' + id
+    a = 'SELECT * FROM ' + lost_found + '_items WHERE id=' + str(id)
     x = c.execute(a)
     item = []
     for y in x:
