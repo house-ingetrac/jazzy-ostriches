@@ -182,7 +182,7 @@ def add_lost_item(user, item, category, date, location, description):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     item_id = last_lost_id() + 1
-    lost_items_vals = [item_id, item, description, category, user, location, get_latitude(location), get_longitude(location), date]
+    lost_items_vals = [item_id, item, description, category, user, location, get_latitude(location + " NY"), get_longitude(location + " NY"), date]
     c.execute("INSERT INTO lost_items (id, item, description, category, account_id, location, lat, long, date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", lost_items_vals)
     ##appending lost item
     a = 'SELECT username, l_lost FROM users'
@@ -204,7 +204,7 @@ def add_found_item(user, item, category, date, location, description):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     item_id = last_found_id() + 1
-    found_items_vals = [item_id, item, description, category, user, location, get_latitude(location), get_longitude(location), date]
+    found_items_vals = [item_id, item, description, category, user, location, get_latitude(location+" NY"), get_longitude(location + " NY"), date]
     c.execute("INSERT INTO found_items (id, item, description, category, account_id, location, lat, long, date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)", found_items_vals)
     ##appending lost item
     a = 'SELECT username, l_found FROM users'
