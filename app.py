@@ -148,7 +148,7 @@ def list_found_items():
 
 @app.route('/single_posting', methods=['GET', 'POST'])
 def single_post():
-    item = database.get_item(request.form.get('item_id'), 'lost')
+    item = database.get_item(request.form.get('item_id'), request.form.get('lost_found'))
     if not session.get('username'):
         return render_template("single_posting.html", loggedIn=False, item=item)
     else:
