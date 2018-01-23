@@ -62,31 +62,6 @@ def get_longitude(location):
 
 # -----FUNCTIONS FOR ITEM SYSTEM-----
 
-#print all lost items from user
-def user_items(user, lost_found):
-    if lost_found == 'lost':
-        l_f = 'l_lost'
-    else:
-        l_f = 'l_found'
-    db = sqlite3.connect("data/lost_and_found.db")
-    c = db.cursor()
-    a = 'SELECT username, ' + l_f + ' FROM users'
-    x = c.execute(a)
-    items = []
-    #gets list of postings from users table, then retrieves item info from lost/found database
-    for bar in x:
-        if(user == bar[0]):
-            list_of_postings = bar[1]
-            if(list_of_postings is None):
-                posts = []
-            else:
-                posts = list_of_postings.split(",")
-    for post in posts:
-        items.append(get_item(int(post), lost_found))
-    #db.commit()
-    #db.close()
-    return items
-
 ##helper fxn for last id
 
 def last_lost_id():
@@ -270,8 +245,8 @@ def find_unique_locations(lost_found):
         if (loc not in locations):
             locations.append(loc)
     return locations
-
-def get_item(id, lost_found):
+  
+  def get_item(id, lost_found):
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     a = 'SELECT * FROM ' + lost_found + '_items WHERE id=' + str(id)
@@ -280,17 +255,41 @@ def get_item(id, lost_found):
     for y in x:
         for info in y:
             item.append(info)
-    db.close()
+    #print(item)
     return item
 
-# add_item("joyce", "boot", "accessory", 0, 40.76, -73.99)
-# add_item("joyce", "yaya", "accessory", 0, 40.76, -73.99)
-# add_item("joyce", "hehe", "accessory", 0, 40.76, -73.99)
-# add_item("joyce", "luppo", "accessory", 0, 40.76, -73.99)
-# print(item_listings())
-#lost_items('joyce')
+#get_item(0, "lost")
 
-'''
+#print all lost items from user
+def user_items(user, lost_found):
+    if lost_found == 'lost':
+        l_f = 'l_lost'
+    else:
+        l_f = 'l_found'
+    db = sqlite3.connect("data/lost_and_found.db")
+    c = db.cursor()
+    a = 'SELECT username, ' + l_f + ' FROM users'
+    x = c.execute(a)
+    items = []
+    #gets list of postings from users table, then retrieves item info from lost/found database
+    for bar in x:
+        if(user == bar[0]):
+            list_of_postings = bar[1]
+            if(list_of_postings is None):
+                posts = []
+            else:
+                posts = list_of_postings.split(",")
+   # print posts
+    for post in posts:
+        if(post != ''):
+            items.append(get_item(int(post), lost_found))
+    db.commit()
+    db.close()
+    return items
+
+#print user_items("dashak", "found")
+
+
 # execute this file to create the initial database
 if __name__ == '__main__':
     # initialize database
