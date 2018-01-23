@@ -189,7 +189,13 @@ def edit():
         return redirect(url_for('authentication'))
     else:
         if request.form.get('delete') == "Delete":
-            #function to delete post
+            item = int(request.form.get('id'))
+            lost_found = request.form.get('lost_found')
+            schema = ["item_id","item","description","category","location","date"]
+            lostness = 1
+            if request.args.get("lostOrFoundVal") == 'lost':
+                lostness = 0
+            auth.delete_item(lostness,item)
             return redirect(url_for('profile'))
         else:
             item = request.form.get('id')
@@ -209,13 +215,12 @@ def editor():
     else:
         schema = ["item_id","item","description","category","location","date"]
         lostness = 1
-        print request.args.get("lostOrFoundVal")
         if request.args.get("lostOrFoundVal") == 'lost':
             lostness = 0
             print "ITS LOST!"
         print("itemid: "+request.args.get("item_id"))
         itemid = int(request.args.get("item_id"))
-        i =1
+        i = 1
         dataIndices = [1,2,3,5,8]
         print "lostness is: "+str(lostness)
         print "itemid is: "+str(itemid)
@@ -234,6 +239,7 @@ def edited():
         return redirect(url_for('authentication'))
     else:
         return render_template("edited.html", loggedIn=True)
+
 
 if __name__ == "__main__":
     app.debug = True

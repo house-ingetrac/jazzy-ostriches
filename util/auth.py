@@ -65,6 +65,18 @@ def edit_item(newValue,lostOrFound,itemID,dataIndex):
     print cmd
     return 0
 
+def delete_item(lostOrFound,itemID):
+    lostOrFoundtab = ["lost_items","found_items"]
+    cmd = 'DELETE FROM %s WHERE id = %i'%(lostOrFoundtab[lostOrFound],itemID)
+    db_name = "data/lost_and_found.db"
+    dab = sqlite3.connect(db_name)
+    c = dab.cursor()
+    users = c.execute(cmd)
+    dab.commit()
+    dab.close()
+    print cmd
+    return 0
+
 
 '''
 if __name__ == '__main__':
