@@ -8,42 +8,47 @@
 
 <h3><center>Your Lost Items:</center></h3><br>
   {% for item in lost_items %}
-    <b><h3>{{item[1]}}</h3></b><br>
-    <i>Category:</i> {{item[3]}}<br>
-    <i>Date:</i> {{item[8]}}<br>
-    <i>Location: </i>{{item[5]}} <br>
-    <i>Description:</i>
-      <!-- desciption is optional-->
-      {% if item[2] == "" %} N/A<br>
-      {% else %} {{item[2]}}<br>
-      {% endif %}
-    <form action="/edit" method="POST">
-      <input type="submit" class="btn" name="edit" value="Edit">
-      <input type="submit" class="btn" name="delete" value="Delete">
-      <input type="hidden" name="id" value="{{item[0]}}">
-      <input type="hidden" name="lost_found" value="lost">
-    </form>
-    <hr>
+    <div class="profile-post">
+      <b><h3>{{item[1]}}</h3></b><br>
+      <font size="14"><i>Category:</i> {{item[3]}}<br>
+      <i>Date:</i> {{item[8]}}<br>
+      <i>Location: </i>{{item[5]}} <br>
+      <i>Description:</i>
+        <!-- desciption is optional-->
+        {% if item[2] == "" %} N/A<br>
+        {% else %} {{item[2]}}<br>
+        {% endif %}<br></font>
+      <form action="/edit" method="POST">
+        <input type="submit" class="btn" name="edit" value="Edit">
+        <input type="submit" class="btn" name="delete" value="Delete">
+        <input type="hidden" name="id" value="{{item[0]}}">
+        <input type="hidden" name="lost_found" value="lost">
+      </form>
+    </div>
+    <br>
   {% endfor %}
 
 <h3><center>Your Found Items:</center></h3><br>
   {% for item in found_items %}
-    <b><h3>{{item[1]}}</h3></b><br>
-    <i>Category:</i> {{item[3]}}<br>
-    <i>Date:</i> {{item[8]}}<br>
-    <i>Location:</i> {{item[5]}} <br>
-    <i>Description:</i>
-      <!-- desciption is optional-->
-      {% if item[2] == "" %} N/A<br>
-      {% else %} {{item[2]}}<br>
-      {% endif %}<br>
-    <form action="/edit" method="POST">
-      <input type="submit" class="btn" name="edit" value="Edit">
-      <input type="submit" class="btn" name="delete" value="Delete">
-      <input type="hidden" name="id" value="{{item[0]}}">
-      <input type="hidden" name="lost_found" value="found">
-    </form>
-    <hr>
+    <div class="profile-post">
+      <h3>{{item[1]}}</h3></b><br>
+      <font size="14">
+      <i>Category:</i> {{item[3]}}<br>
+      <i>Date:</i> {{item[8]}}<br>
+      <i>Location:</i> {{item[5]}} <br>
+      <i>Description:</i>
+        <!-- desciption is optional-->
+        {% if item[2] == "" %} N/A<br>
+        {% else %} {{item[2]}}<br>
+        {% endif %}<br><br>
+      </font>
+      <form action="/edit" method="POST">
+        <input type="submit" class="btn" name="edit" value="Edit">
+        <input type="submit" class="btn" name="delete" value="Delete">
+        <input type="hidden" name="id" value="{{item[0]}}">
+        <input type="hidden" name="lost_found" value="found">
+      </form>
+    </div>
   {% endfor %}
 </div>
 {% endblock %}

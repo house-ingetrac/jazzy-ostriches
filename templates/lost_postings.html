@@ -18,22 +18,22 @@ for (var post = 0; post < listings_list.length; post++){
 }
 
 //helper function: adds postings to each marker on click
-// function add_postings(marker, i, items_list) {
-//   var contentString = "";
-//   //adds first 5 posts
-//   for(i = 0; i < 5; i++){
-//     try{
-//       contentString += "<form action='/posting'><input type='hidden' name='item_id' value='"+items_list[2]+"'><input type='submit' value='"+items_list[1] + "'></form>";
-//     };
-//     catch(e){
-//       break;
-//     };
-//   };
-//   //adds See More button
-//   contentString += "<br>" + "<form action='/listings'><input type='submit' value='See More'><input type='hidden' name='location' value='"+items_list[0]+"'></form>";
-//   infowindow.setContent(contentString);
-//   infowindow.open(map, marker);
-// };
+function add_postings(marker, i, items_list) {
+  var contentString = "";
+  //adds first 5 posts
+  for(i = 0; i < 5; i++){
+    try{
+      contentString += "<form action='/posting'><input type='hidden' name='item_id' value='"+items_list[2]+"'><input type='submit' value='"+items_list[1] + "'></form>";
+    };
+    catch(e){
+      break;
+    };
+  };
+  //adds See More button
+  contentString += "<br>" + "<form action='/listings'><input type='submit' value='See More'><input type='hidden' name='location' value='"+items_list[0]+"'></form>";
+  infowindow.setContent(contentString);
+  infowindow.open(map, marker);
+};
 
 function initialize() {
   var map = new google.maps.Map(document.getElementById('sidemap'), {
@@ -88,13 +88,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
       </button>
     </div>
     <div id="white-block"></div>
-    <select class="filterdrop" name="borough">
-      <option value="none">Borough</option>
-      <option value="manhattan">Mahattan</option>
-      <option value="brooklyn">Brooklyn</option>
-      <option value="queens">Queens</option>
-      <option value="staten">Staten Island</option>
-    </select>
     <select class="filterdrop" name="category">
       <option value="none">Category</option>
       <option value="bags">Bags</option>
