@@ -239,6 +239,7 @@ def item_listings(lost_found):
         item_id = bar[0]
         item_name = bar[1]
         item_desc = bar[2]
+        item_cat = bar[3]
         item_lat = bar[6]
         item_long = bar[7]
         item_location = bar[5]
@@ -246,6 +247,7 @@ def item_listings(lost_found):
         ##add vars for location string and date
         item = {}
         item['item_id'] = item_id
+        item['item_cat'] = item_cat
         item['item_name'] = item_name
         item['item_desc'] = item_desc
         item['item_lat'] = item_lat
