@@ -189,3 +189,6 @@ created maybe postings page and formatted find lost page
 joyceW -- 2018-01-22 22:57
 fixed the flask to reflect accurate functions
 
+dariaS -- 2018-01-23 02:13
+added fxn for found items to be matched
+
