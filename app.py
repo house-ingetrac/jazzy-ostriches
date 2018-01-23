@@ -131,7 +131,7 @@ def list_lost_items():
 
 @app.route('/found_postings', methods=['GET', 'POST'])
 def list_found_items():
-    list = database.item_list('found')
+    list = database.item_listings('found')
     unique_locations = database.find_unique_locations('found')
     #still allowed to see postings without logging in
     if not session.get('username'):

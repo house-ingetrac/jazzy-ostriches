@@ -73,8 +73,8 @@ def last_found_id():
     db = sqlite3.connect("data/lost_and_found.db")
     c = db.cursor()
     last_id = 'SELECT * FROM found_items WHERE id=(SELECT max(id) FROM found_items)'
-    if not isinstance(last_id, (int, long, float, complex)):
-        return 0
+   # if not isinstance(last_id, (int, long, float, complex)):
+     #   return 0
     x = c.execute(last_id)
     for bar in x:
         return bar[0]
@@ -179,10 +179,9 @@ def add_found_item(user, item, category, date, location, description):
     for bar in x:
         if(user == bar[0]):
             wow = bar[1]
-            if not isinstance(wow, str):
-                wow = str(item_id)
-            else:
-                wow+= "," + str(item_id)
+           # if not isinstance(wow, str):
+              #  wow = str(item_id)
+            wow += "," + str(item_id)
             c.execute("UPDATE users SET l_found='" + wow + "' WHERE username = '" + user + "'")
     db.commit()
     db.close()
