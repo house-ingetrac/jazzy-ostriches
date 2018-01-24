@@ -99,7 +99,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <h1 style="padding-left:17px;"> Lost Items</h1>
       {% for item in listings %}
         <div id="post-container">
-          <h3>{{item['item_name']}}</h3><br> {{item['item_id']}}
+          <h3>{{item['item_name']}}</h3><br> 
           Date: {{item['item_date']}}<br>
           Location: {{item['item_location']}}<br><br>
           <form action="/single_posting" method="POST">

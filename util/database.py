@@ -4,7 +4,10 @@ import os
 import urllib2
 import json
 
-
+#opens api key text file and retrieves keys
+f = open("keys.txt", "r")
+apis = f.read().split("\n")
+map_api_key = apis[1]
 #dasha tasks:
   #
 # only has login functionality so far
