@@ -18,7 +18,7 @@
       {% else %} {{listing['item_desc']}} {% endif %} <br>
     <form action='/single_posting' method="POST">
       <input type="submit" value="See More" name="more" class="btn">
-      <input type="hidden" value="{{item['item_id']}}" name="id">
+      <input type="hidden" value="{{listing['item_id']}}" name="id">
       <input type="hidden" name="lost_found" value="{{lost_found}}">
     </form>
     <hr>
