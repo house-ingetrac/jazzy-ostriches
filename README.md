@@ -24,6 +24,8 @@ Lost in New York uses the Google Maps API, Lost and Found API, and Mailjet API t
   4. Go to "REST API" and select "Master API & Sub API key management"
   5. You will see the public and private keys.
   6. Copy them into keys.txt
+  
+  * If you already have keys, copy them into their respective places into keys.txt or if you already have a properly formatted keys.txt file, replace the existing one.
 
 ### How to install the pip packages:
 
