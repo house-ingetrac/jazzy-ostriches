@@ -21,12 +21,11 @@ map_api_key = apis[1]
 #homepage
 @app.route("/")
 def start():
-    if session.get('username'):
-        #must add more once home.html has more details
-        return render_template('home.html', title="Welcome", loggedIn=True, api_key=map_api_key)
-    #must add introductory page to explain what everything is
     found = database.find_unique_locations('found')
     lost = database.find_unique_locations('lost')
+    if session.get('username'):
+        #must add more once home.html has more details
+        return render_template('home.html', title="Welcome", loggedIn=True, api_key=map_api_key, lost_listings=lost, found_listings=found)
     return render_template('home.html', title="Welcome", loggedIn=False, api_key=map_api_key, lost_listings=lost, found_listings=found)
 
 
@@ -38,7 +37,7 @@ def lost_search():
     category = ''
     unique_locations = database.find_unique_locations('lost')
     r = request.form
-    if "search" in r: 
+    if "search" in r:
         keyword = r["search"]
    # print keyword
     if "category" in r:
@@ -54,7 +53,7 @@ def found_search():
     category = ''
     unique_locations = database.find_unique_locations('found')
     r = request.form
-    if "search" in r: 
+    if "search" in r:
         keyword = r["search"]
     #print keyword
     if "category" in r:

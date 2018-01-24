@@ -19,18 +19,19 @@
     <a class="btn" href="/lost">LOST</a> |
     <a class="btn" href="/found">FOUND</a>
   </center>
-  {{lost_listings}}
-  {{found_listings}}
   <br><br><br>
 </div>
 <script>
   var infowindow = new google.maps.InfoWindow();
+  console.log({{lost_listings}})
   var listing = "{{lost_listings}}".slice(1, -1);
+
   var listings_list = listing.split("), ");
   var lost_list = [];
   for (var post = 0; post < listings_list.length; post++){
     if (post == listings_list.length-1){
-      nums = [parseFloat(listings_list[post].split(", ")[0].slice(1)), parseFloat(listings_list[post].split(", ")[1].slice(0, -1))];
+      nums = []
+      // nums = [parseFloat(listings_list[post].split(", ")[0].slice(1)), parseFloat(listings_list[post].split(", ")[1].slice(0, -1))];
     }else{
       nums = [parseFloat(listings_list[post].split(", ")[0].slice(1)), parseFloat(listings_list[post].split(", ")[1])];
     }
@@ -42,21 +43,12 @@
   var found_list = [];
   for (var post = 0; post < listings_list1.length; post++){
     if (post == listings_list1.length-1){
-      nums = [parseFloat(listings_list1[post].split(", ")[0].slice(1)), parseFloat(listings_list1[post].split(", ")[1].slice(0, -1))];
+      nums = []
+      //nums = [parseFloat(listings_list1[post].split(", ")[0].slice(1)), parseFloat(listings_list1[post].split(", ")[1].slice(0, -1))];
     }else{
       nums = [parseFloat(listings_list1[post].split(", ")[0].slice(1)), parseFloat(listings_list1[post].split(", ")[1])];
     }
     found_list.push(nums);
-  }
-
-  function mark(lists){
-    for(var loc = 0; loc < lists.length; loc++){
-      console.log(lists[loc]);
-      var mark = new google.maps.Marker({
-        position: new google.maps.LatLng(lists[loc][0], lists[loc][1]),
-        map: map
-      });
-    };
   }
 
   function initialize() {
@@ -65,9 +57,20 @@
       center: new google.maps.LatLng(40.76, -73.99), //center for times square
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-    mark(lost_list);
-    mark(found_list);
+    for(var loc = 0; loc < lost_list.length; loc++){
+      var mark = new google.maps.Marker({
+        position: new google.maps.LatLng(lost_list[loc][0], lost_list[loc][1]),
+        map: map
+      });
+    };
+    for(var loc = 0; loc < found_list.length; loc++){
+      var mark = new google.maps.Marker({
+        position: new google.maps.LatLng(found_list[loc][0], found_list[loc][1]),
+        map: map
+      });
+    };
   };
+
 
   google.maps.event.addDomListener(window, 'load', initialize);
 </script>
