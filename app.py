@@ -32,11 +32,37 @@ def start():
 
 #search bar fxn
 
-@app.route("/search")
-def search():
-    if session.get('username'):
+@app.route("/lost_search", methods=["GET","POST"])
+def lost_search():
+    keyword = ''
+    category = ''
+    unique_locations = database.find_unique_locations('lost')
+    r = request.form
+    if "search" in r: 
+        keyword = r["search"]
+   # print keyword
+    if "category" in r:
+        category = r["category"]
+    #print category
+    item_list = database.lost_filter_search(keyword, category, "lost")
         #must add more once home.html has more details
-        return render_template('home.html')
+    return render_template("lost_postings.html", api_key=map_api_key, listings=item_list, unique=unique_locations)
+
+@app.route("/found_search", methods=["GET","POST"])
+def found_search():
+    keyword = ''
+    category = ''
+    unique_locations = database.find_unique_locations('found')
+    r = request.form
+    if "search" in r: 
+        keyword = r["search"]
+    #print keyword
+    if "category" in r:
+        category = r["category"]
+   # print category
+    item_list = database.lost_filter_search(keyword, category, "found")
+        #must add more once home.html has more details
+    return render_template("found_postings.html", api_key=map_api_key, listings=item_list, unique=unique_locations)
 
 # Login Authentication
 @app.route('/login', methods=['GET', 'POST'])

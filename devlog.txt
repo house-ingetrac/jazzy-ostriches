@@ -209,3 +209,6 @@ Fixed bugs with user profiles and editing items. Began to work on filter bar. Ca
 
 joyceW -- 2018-01-23 15:30
 Looked for bugs, added more html pages
+dariaS -- 2018-01-24 01:10
+filter bar works. can filter by category and by keyword in both lost and found postings.
+

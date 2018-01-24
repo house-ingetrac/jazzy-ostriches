@@ -12,9 +12,9 @@ import json
 #fxns available: getting users, adding users, getting user's lost items, adding lost item to user account, item listing
 
 #opens api key text file and retrieves keys
-f = open("keys.txt", "r")
-apis = f.read().split("\n")
-map_api_key = apis[1]
+#f = open("keys.txt", "r")
+#apis = f.read().split("\n")
+#map_api_key = apis[1]
 
 # -----FUNCTIONS FOR LOGIN SYSTEM-----
 # returns a dictionary for user data {user: pass}
@@ -241,16 +241,19 @@ def item_listings(lost_found):
     db.close()
     return item_list
 
-def lost_filter_search(keyword,category,date):
-    lost_items = item_listings("lost")
+def lost_filter_search(keyword,category, lost_found):
+    lost_items = item_listings(lost_found)
     result = []
     #print lost_items
     if keyword != "":
         for things in lost_items:
-            print 1
             if (keyword in things["item_name"]):
                 result.append(things)
-    if category != "":
+    if category != "none" and keyword == "":
+        for things in lost_items:
+            if(category in things["item_cat"]):
+                result.append(things)
+    if category != "none" and keyword != "":
         result2 = []
         for things in result:
             if(category in things["item_cat"]):
@@ -259,7 +262,7 @@ def lost_filter_search(keyword,category,date):
     ###write date sorting part
     return result
 
-print lost_filter_search("bag","bags", "no")
+#print lost_filter_search("ca","")
 
 def find_unique_locations(lost_found):
     db = sqlite3.connect("data/lost_and_found.db")
